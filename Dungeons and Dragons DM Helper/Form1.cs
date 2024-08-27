@@ -23,5 +23,17 @@ namespace Dungeons_and_Dragons_DM_Helper
 
             dice_Roller.Show();
         }
+
+        private void lbCombatants_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddCombatant_Click(object sender, EventArgs e)
+        {
+            NewCombatant newCombatant = new NewCombatant();
+            newCombatant.Show();
+        }
+
     }
 }
