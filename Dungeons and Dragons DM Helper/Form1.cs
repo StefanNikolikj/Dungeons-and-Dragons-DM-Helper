@@ -16,5 +16,12 @@ namespace Dungeons_and_Dragons_DM_Helper
         {
             InitializeComponent();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Dice_Roller dice_Roller = new Dice_Roller();
+
+            dice_Roller.Show();
+        }
     }
 }
