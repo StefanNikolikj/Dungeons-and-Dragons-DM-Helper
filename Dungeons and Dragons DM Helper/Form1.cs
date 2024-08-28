@@ -32,8 +32,43 @@ namespace Dungeons_and_Dragons_DM_Helper
         private void btnAddCombatant_Click(object sender, EventArgs e)
         {
             NewCombatant newCombatant = new NewCombatant();
-            newCombatant.Show();
+
+            if (newCombatant.ShowDialog() == DialogResult.OK)
+            {
+                lbCombatants.Items.Add(newCombatant.combatant);
+            }
         }
 
+        private void btnRollInitiative_Click(object sender, EventArgs e)
+        {
+            Dice initiativeDice = new Dice(20);
+            List<Combatant> combatants = getCombatantList();
+            foreach (var combatant in combatants)
+            {
+                initiativeDice.setRoll();
+                combatant.initiative = initiativeDice.roll + combatant.modifierCalc(combatant.stats[1]);
+            }
+            combatants.Sort((a,b) => b.initiative.CompareTo(a.initiative));
+            updateCombatants(combatants);
+
+        }
+        private List<Combatant> getCombatantList()
+        {
+            List<Combatant> tempList = new List<Combatant>();
+            foreach (var item in lbCombatants.Items)
+            {
+                Combatant temp = item as Combatant;
+                tempList.Add(temp);
+            }
+            return tempList;
+        }
+        private void updateCombatants(List<Combatant> combatants)
+        {
+            lbCombatants.Items.Clear();
+            foreach (var combatant in combatants)
+            {
+                lbCombatants.Items.Add(combatant);
+            }
+        }
     }
 }

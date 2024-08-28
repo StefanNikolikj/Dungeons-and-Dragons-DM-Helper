@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Dungeons_and_Dragons_DM_Helper
 {
-    internal class Combatant
+    public class Combatant
     {
-        public string name;
+        public string name {  get; set; }
         // Stats
 
-        public List<int> stats; // 0 - str, 1 - dex, 2 - con, 3 - int, 4 - wis, 5 - chr
+        public List<int> stats {  get; set; } //(index of elements and their meanings) 0 - str, 1 - dex, 2 - con, 3 - int, 4 - wis, 5 - chr
         //public int strength;
         //public int dexterity;
         //public int constitution;
@@ -21,28 +21,30 @@ namespace Dungeons_and_Dragons_DM_Helper
         //public int charisma;
 
         //health and armor class
-        public int maxHP;
-        public int currentHP;
-        public int tempHP; // not sure if needed
-        public int AC;
+        public int maxHP {  get; set; }
+        public int currentHP { get; set; }
+        public int tempHP { get; set; } // not sure if needed
+        public int AC {  get; set; }
         //proficiency bonux
-        public int proficiency;
+        public int proficiency { get; set; }
         //speeds
-        public int movementSpeed;
-        public int burrowSpeed;
-        public int swimSpeed;
-        public int flyingSpeed;
-        public int climbingSpeed; // dunno how neccecary this one is
-        public int passivePerception;
-        public int passiveInsight; // homebrew shit for Stefan
+        public int movementSpeed { get; set; }
+        public int burrowSpeed {  get; set; }
+        public int swimSpeed {  get; set; }
+        public int flyingSpeed {  get; set; }
+        public int climbingSpeed {  get; set; } // dunno how neccecary this one is
+        public int passivePerception {  get; set; }
+        public int passiveInsight {  get; set; } // homebrew shit for Stefan
 
-        public List<int> savingThrows;
-        public List<int> damageResistances;
-        public List<int> damageImmunities;
-        public List<int> damageVulnerabilities;
-        public List<int> conditionImmunities;
+        public List<string> savingThrows { get; set; }
+        public List<string> damageResistances { get; set; }
+        public List<string> damageImmunities { get; set; }
+        public List<string> damageVulnerabilities { get; set; }
+        public List<string> conditionImmunities { get; set; }
 
-        public Combatant(string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int hp, int ac, int proficiency,List<int> damageResistances, List<int> damageImmunities, List<int> damageVulnerabilities,List<int> savingThrows)
+        public int initiative { get; set; }
+
+        public Combatant(string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int hp, int ac, int proficiency,List<string> damageResistances, List<string> damageImmunities, List<string> damageVulnerabilities,List<string> savingThrows, int movementSpeed, int burrowSpeed, int swimSpeed, int flightSpeed, int climbingSpeed)
         {
             this.name = name;
             this.stats = new List<int>();
@@ -60,6 +62,7 @@ namespace Dungeons_and_Dragons_DM_Helper
             this.damageVulnerabilities = damageVulnerabilities;
             this.savingThrows = savingThrows;
             this.passivePerception = calculatePassivePerception();
+            this.initiative = 0;
         }
 
         public int modifierCalc(int stat)
@@ -71,11 +74,15 @@ namespace Dungeons_and_Dragons_DM_Helper
         {
             return 10 + modifierCalc(this.stats[4]);
         }
+        
 
         List<String> damageTypes = new List<String>() {"Piercing", "Bludgeoning", "Slashing", "Cold", "Fire", "Lightning", "Thunder", "Poison", "Acid", "Necrotic", "Radiant", "Force", "Psychic"};
 
         List<String> conditions = new List<String>() {"Blinded", "Charmed", "Deafened", "Frightened", "Grappled", "Incapacitated", "Invisible", "Paralyzed", "Petrified", "Poisoned", "Prone", "Restrained", "Stunned", "Unconscious"};
 
-
+        public override string ToString()
+        {
+            return $"{this.name} - Initiative: {this.initiative}";
+        }
     }
 }

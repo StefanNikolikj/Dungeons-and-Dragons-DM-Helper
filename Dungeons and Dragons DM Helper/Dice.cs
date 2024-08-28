@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dungeons_and_Dragons_DM_Helper
 {
-    internal class Dice
+    public class Dice
     {
         public int sides;
         public int roll;

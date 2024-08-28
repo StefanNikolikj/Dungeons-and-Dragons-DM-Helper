@@ -83,6 +83,7 @@
             this.btnRollInitiative.TabIndex = 1;
             this.btnRollInitiative.Text = "Roll Initiatives";
             this.btnRollInitiative.UseVisualStyleBackColor = true;
+            this.btnRollInitiative.Click += new System.EventHandler(this.btnRollInitiative_Click);
             // 
             // btnAddCombatant
             // 
