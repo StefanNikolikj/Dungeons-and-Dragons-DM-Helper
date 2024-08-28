@@ -13,65 +13,70 @@ namespace Dungeons_and_Dragons_DM_Helper
 {
     public partial class Dice_Roller : Form
     {
-        List<Dice> diceList = new List<Dice>();
+        Dictionary<string, List<int>> diceMap {  get; set; }
         
         public Dice_Roller()
         {
             InitializeComponent();
+            diceMap = new Dictionary<string, List<int>>();
         }
 
 
         private void btnRoll_Click(object sender, EventArgs e)
         {
             int totalRoll = getTotalRoll();
-            diceList.Clear();
+            
             tbRollTotal.Text = totalRoll.ToString();
         }
-        private void rollDice(int sides)
+        private void rollDie(string dice)
         {
-            Dice dice = new Dice(sides);
-            dice.setRoll();
-            diceList.Add(dice);
+            int roll = Dice.rollDice(Int32.Parse(dice.Substring(1)));
+            if (!diceMap.ContainsKey(dice))
+                diceMap.Add(dice, new List<int> { roll });
+            else diceMap[dice].Add(roll);
         }
         private void btnd100_Click(object sender, EventArgs e)
         {
-            rollDice(100);
+            rollDie("d100");
         }
 
         private void btnd20_Click(object sender, EventArgs e)
         {
-            rollDice(20);
+            rollDie("d20");
         }
 
         private void btnd12_Click(object sender, EventArgs e)
         {
-            rollDice(12);
+            rollDie("d12");
         }
 
         private void btnd10_Click(object sender, EventArgs e)
         {
-            rollDice(10);
+            rollDie("d10");
         }
 
         private void btnd8_Click(object sender, EventArgs e)
         {
-            rollDice(8);
+            rollDie("d8");
         }
 
         private void btnd6_Click(object sender, EventArgs e)
         {
-            rollDice(6);
+            rollDie("d6");
         }
 
         private void btnd4_Click(object sender, EventArgs e)
         {
-            rollDice(4);
+            rollDie("d4");
         }
         private int getTotalRoll()
         {
             int totalRoll = 0;
-            diceList.ForEach(dice => totalRoll += dice.roll);
-
+            foreach (var key in diceMap.Keys)
+            {
+                foreach (var value in diceMap[key])
+                    totalRoll += value;
+            }
             return totalRoll;
         }
     }

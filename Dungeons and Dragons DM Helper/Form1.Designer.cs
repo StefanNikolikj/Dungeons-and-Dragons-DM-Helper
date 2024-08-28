@@ -63,6 +63,7 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnManualInitiative = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +72,7 @@
             this.lbCombatants.FormattingEnabled = true;
             this.lbCombatants.Location = new System.Drawing.Point(12, 27);
             this.lbCombatants.Name = "lbCombatants";
+            this.lbCombatants.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbCombatants.Size = new System.Drawing.Size(236, 420);
             this.lbCombatants.TabIndex = 0;
             this.lbCombatants.SelectedIndexChanged += new System.EventHandler(this.lbCombatants_SelectedIndexChanged);
@@ -81,7 +83,7 @@
             this.btnRollInitiative.Name = "btnRollInitiative";
             this.btnRollInitiative.Size = new System.Drawing.Size(236, 23);
             this.btnRollInitiative.TabIndex = 1;
-            this.btnRollInitiative.Text = "Roll Initiatives";
+            this.btnRollInitiative.Text = "Roll Initiatives of Selected Combatants";
             this.btnRollInitiative.UseVisualStyleBackColor = true;
             this.btnRollInitiative.Click += new System.EventHandler(this.btnRollInitiative_Click);
             // 
@@ -339,11 +341,22 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
+            // btnManualInitiative
+            // 
+            this.btnManualInitiative.Location = new System.Drawing.Point(12, 482);
+            this.btnManualInitiative.Name = "btnManualInitiative";
+            this.btnManualInitiative.Size = new System.Drawing.Size(236, 23);
+            this.btnManualInitiative.TabIndex = 5;
+            this.btnManualInitiative.Text = "Manualy Imput Initiative";
+            this.btnManualInitiative.UseVisualStyleBackColor = true;
+            this.btnManualInitiative.Click += new System.EventHandler(this.btnManualInitiative_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 483);
+            this.ClientSize = new System.Drawing.Size(800, 520);
+            this.Controls.Add(this.btnManualInitiative);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAddCombatant);
             this.Controls.Add(this.btnRollInitiative);
@@ -395,6 +408,7 @@
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Button btnManualInitiative;
     }
 }
 

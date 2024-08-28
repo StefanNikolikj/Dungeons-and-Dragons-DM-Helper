@@ -41,21 +41,19 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         private void btnRollInitiative_Click(object sender, EventArgs e)
         {
-            Dice initiativeDice = new Dice(20);
-            List<Combatant> combatants = getCombatantList();
-            foreach (var combatant in combatants)
+            List<Combatant> combatants = getListOfSelectedCombatants();
+            foreach (Combatant combatant in combatants)
             {
-                initiativeDice.setRoll();
-                combatant.initiative = initiativeDice.roll + combatant.modifierCalc(combatant.stats[1]);
+                combatant.initiative = Dice.rollDice(20) + combatant.modifierCalc(combatant.stats[1]);
+                lbCombatants.Items[lbCombatants.Items.IndexOf(combatant)] = combatant;
             }
-            combatants.Sort((a,b) => b.initiative.CompareTo(a.initiative));
-            updateCombatants(combatants);
-
+            sortCombatants();
+            
         }
-        private List<Combatant> getCombatantList()
+        private List<Combatant> getListOfSelectedCombatants()
         {
             List<Combatant> tempList = new List<Combatant>();
-            foreach (var item in lbCombatants.Items)
+            foreach (var item in lbCombatants.SelectedItems)
             {
                 Combatant temp = item as Combatant;
                 tempList.Add(temp);
@@ -68,6 +66,35 @@ namespace Dungeons_and_Dragons_DM_Helper
             foreach (var combatant in combatants)
             {
                 lbCombatants.Items.Add(combatant);
+            }
+        }
+        private List<Combatant> getListOfEveryCombatant()
+        {
+            List<Combatant> tempList = new List<Combatant>();
+            foreach (var item in lbCombatants.Items)
+            {
+                Combatant temp = item as Combatant;
+                tempList.Add(temp);
+            }
+            return tempList;
+        }
+        private void sortCombatants()
+        {
+            List<Combatant> combatants = getListOfEveryCombatant();
+            combatants.Sort((a, b) => b.initiative.CompareTo(a.initiative));
+            updateCombatants(combatants);
+        }
+
+        private void btnManualInitiative_Click(object sender, EventArgs e)
+        {
+            SetInitiative setInitiative = new SetInitiative();
+
+            if (setInitiative.ShowDialog() == DialogResult.OK)
+            {
+                Combatant temp = lbCombatants.SelectedItem as Combatant;
+                temp.initiative = setInitiative.initiative;
+                lbCombatants.SelectedItem = temp;
+                sortCombatants();
             }
         }
     }
