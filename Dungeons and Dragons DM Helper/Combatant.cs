@@ -84,5 +84,23 @@ namespace Dungeons_and_Dragons_DM_Helper
         {
             return $"{this.name} - Initiative: {this.initiative}";
         }
+
+        public bool rollSavingThrow (int DC, int stat)
+        {
+            int save = Dice.rollDice(20) + stats[stat];
+
+            if (save >= DC) {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int rollAttackRoll (int modifier)
+        {
+            return Dice.rollDice(20) + modifier;
+        }
     }
 }

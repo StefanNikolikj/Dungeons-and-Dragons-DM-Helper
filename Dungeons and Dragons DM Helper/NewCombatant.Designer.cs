@@ -49,7 +49,9 @@
             this.lblName = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
             this.gbSavingThrowProficiencies = new System.Windows.Forms.GroupBox();
+            this.lblProficiency = new System.Windows.Forms.Label();
             this.clbSavingThrows = new System.Windows.Forms.CheckedListBox();
+            this.numProficiency = new System.Windows.Forms.NumericUpDown();
             this.gbResistances = new System.Windows.Forms.GroupBox();
             this.clbResistances = new System.Windows.Forms.CheckedListBox();
             this.gbImmunities = new System.Windows.Forms.GroupBox();
@@ -57,8 +59,6 @@
             this.btnAddCombatant = new System.Windows.Forms.Button();
             this.gbVulnerabilities = new System.Windows.Forms.GroupBox();
             this.clbVulnerabilities = new System.Windows.Forms.CheckedListBox();
-            this.numProficiency = new System.Windows.Forms.NumericUpDown();
-            this.lblProficiency = new System.Windows.Forms.Label();
             this.gbSpeed = new System.Windows.Forms.GroupBox();
             this.lblClimbingSpeed = new System.Windows.Forms.Label();
             this.lblFlightSpeed = new System.Windows.Forms.Label();
@@ -81,10 +81,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numAc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHp)).BeginInit();
             this.gbSavingThrowProficiencies.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numProficiency)).BeginInit();
             this.gbResistances.SuspendLayout();
             this.gbImmunities.SuspendLayout();
             this.gbVulnerabilities.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numProficiency)).BeginInit();
             this.gbSpeed.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numClimbingSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFlyingSpeed)).BeginInit();
@@ -221,6 +221,7 @@
             this.numStr.Name = "numStr";
             this.numStr.Size = new System.Drawing.Size(120, 22);
             this.numStr.TabIndex = 0;
+            this.numStr.ValueChanged += new System.EventHandler(this.numStr_ValueChanged);
             // 
             // gbHpAc
             // 
@@ -301,6 +302,15 @@
             this.gbSavingThrowProficiencies.TabStop = false;
             this.gbSavingThrowProficiencies.Text = "Proficiences";
             // 
+            // lblProficiency
+            // 
+            this.lblProficiency.AutoSize = true;
+            this.lblProficiency.Location = new System.Drawing.Point(65, 46);
+            this.lblProficiency.Name = "lblProficiency";
+            this.lblProficiency.Size = new System.Drawing.Size(92, 13);
+            this.lblProficiency.TabIndex = 10;
+            this.lblProficiency.Text = "Proficiency Bonus";
+            // 
             // clbSavingThrows
             // 
             this.clbSavingThrows.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -316,6 +326,13 @@
             this.clbSavingThrows.Name = "clbSavingThrows";
             this.clbSavingThrows.Size = new System.Drawing.Size(215, 130);
             this.clbSavingThrows.TabIndex = 0;
+            // 
+            // numProficiency
+            // 
+            this.numProficiency.Location = new System.Drawing.Point(53, 62);
+            this.numProficiency.Name = "numProficiency";
+            this.numProficiency.Size = new System.Drawing.Size(120, 20);
+            this.numProficiency.TabIndex = 9;
             // 
             // gbResistances
             // 
@@ -425,22 +442,6 @@
             this.clbVulnerabilities.Name = "clbVulnerabilities";
             this.clbVulnerabilities.Size = new System.Drawing.Size(122, 298);
             this.clbVulnerabilities.TabIndex = 1;
-            // 
-            // numProficiency
-            // 
-            this.numProficiency.Location = new System.Drawing.Point(53, 62);
-            this.numProficiency.Name = "numProficiency";
-            this.numProficiency.Size = new System.Drawing.Size(120, 20);
-            this.numProficiency.TabIndex = 9;
-            // 
-            // lblProficiency
-            // 
-            this.lblProficiency.AutoSize = true;
-            this.lblProficiency.Location = new System.Drawing.Point(65, 46);
-            this.lblProficiency.Name = "lblProficiency";
-            this.lblProficiency.Size = new System.Drawing.Size(92, 13);
-            this.lblProficiency.TabIndex = 10;
-            this.lblProficiency.Text = "Proficiency Bonus";
             // 
             // gbSpeed
             // 
@@ -582,10 +583,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numHp)).EndInit();
             this.gbSavingThrowProficiencies.ResumeLayout(false);
             this.gbSavingThrowProficiencies.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numProficiency)).EndInit();
             this.gbResistances.ResumeLayout(false);
             this.gbImmunities.ResumeLayout(false);
             this.gbVulnerabilities.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numProficiency)).EndInit();
             this.gbSpeed.ResumeLayout(false);
             this.gbSpeed.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numClimbingSpeed)).EndInit();

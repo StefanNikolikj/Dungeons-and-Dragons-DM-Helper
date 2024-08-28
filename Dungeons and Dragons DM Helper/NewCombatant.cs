@@ -41,5 +41,10 @@ namespace Dungeons_and_Dragons_DM_Helper
 
             return items;
         }
+
+        private void numStr_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

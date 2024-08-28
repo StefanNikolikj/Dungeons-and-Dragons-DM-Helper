@@ -97,5 +97,15 @@ namespace Dungeons_and_Dragons_DM_Helper
                 sortCombatants();
             }
         }
+
+        private void btnSingleSavingThrow_Click(object sender, EventArgs e)
+        {
+            SavingThrow newSavingThrow = new SavingThrow();
+
+            if(newSavingThrow.ShowDialog() == DialogResult.OK)
+            {
+                
+            }
+        }
     }
 }

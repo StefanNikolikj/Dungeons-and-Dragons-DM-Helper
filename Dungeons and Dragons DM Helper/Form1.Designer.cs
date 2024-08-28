@@ -64,6 +64,8 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnManualInitiative = new System.Windows.Forms.Button();
+            this.btnSingleSavingThrow = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,6 +101,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnSingleSavingThrow);
             this.groupBox1.Location = new System.Drawing.Point(367, 27);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(421, 420);
@@ -351,6 +354,16 @@
             this.btnManualInitiative.UseVisualStyleBackColor = true;
             this.btnManualInitiative.Click += new System.EventHandler(this.btnManualInitiative_Click);
             // 
+            // btnSingleSavingThrow
+            // 
+            this.btnSingleSavingThrow.Location = new System.Drawing.Point(7, 313);
+            this.btnSingleSavingThrow.Name = "btnSingleSavingThrow";
+            this.btnSingleSavingThrow.Size = new System.Drawing.Size(75, 23);
+            this.btnSingleSavingThrow.TabIndex = 0;
+            this.btnSingleSavingThrow.Text = "Roll Saving Throw";
+            this.btnSingleSavingThrow.UseVisualStyleBackColor = true;
+            this.btnSingleSavingThrow.Click += new System.EventHandler(this.btnSingleSavingThrow_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -365,6 +378,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Dnd Combat Helper App";
+            this.groupBox1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -409,6 +423,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Button btnManualInitiative;
+        private System.Windows.Forms.Button btnSingleSavingThrow;
     }
 }
 
