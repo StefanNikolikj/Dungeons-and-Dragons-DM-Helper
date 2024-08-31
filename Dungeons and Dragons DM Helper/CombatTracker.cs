@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Dungeons_and_Dragons_DM_Helper
 {
-    public partial class Form1 : Form
+    public partial class CombatTracker : Form
     {
-        public Form1()
+        public CombatTracker()
         {
             InitializeComponent();
         }
@@ -108,26 +108,6 @@ namespace Dungeons_and_Dragons_DM_Helper
             }
         }
 
-        private void btnSingleSavingThrow_Click(object sender, EventArgs e)
-        {
-            SavingThrow newSavingThrow = new SavingThrow();
-
-            if(newSavingThrow.ShowDialog() == DialogResult.OK)
-            {
-                
-            }
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblAC_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void updateDisplay()
         {
             if (lbCombatants.SelectedIndex >= 0)
@@ -143,19 +123,19 @@ namespace Dungeons_and_Dragons_DM_Helper
                 pbCurrentHP.Maximum = combatant.maxHP;
                 pbCurrentHP.Value = combatant.currentHP;
 
-                tbStr.Text = $"{combatant.stats[0]} (+ {combatant.modifierCalc(combatant.stats[0])})";
-                tbDex.Text = $"{combatant.stats[1]} (+ {combatant.modifierCalc(combatant.stats[1])})";
-                tbCon.Text = $"{combatant.stats[2]} (+ {combatant.modifierCalc(combatant.stats[2])})";
-                tbInt.Text = $"{combatant.stats[3]} (+ {combatant.modifierCalc(combatant.stats[3])})";
-                tbWis.Text = $"{combatant.stats[4]} (+ {combatant.modifierCalc(combatant.stats[4])})";
-                tbChr.Text = $"{combatant.stats[5]} (+ {combatant.modifierCalc(combatant.stats[5])})";
+                tbStr.Text = $"{combatant.stats[0]} ({getSign(combatant.modifierCalc(combatant.stats[0]))}{combatant.modifierCalc(combatant.stats[0])})";
+                tbDex.Text = $"{combatant.stats[1]} ({getSign(combatant.modifierCalc(combatant.stats[1]))}{combatant.modifierCalc(combatant.stats[1])})";
+                tbCon.Text = $"{combatant.stats[2]} ({getSign(combatant.modifierCalc(combatant.stats[2]))}{combatant.modifierCalc(combatant.stats[2])})";
+                tbInt.Text = $"{combatant.stats[3]} ({getSign(combatant.modifierCalc(combatant.stats[3]))}{combatant.modifierCalc(combatant.stats[3])})";
+                tbWis.Text = $"{combatant.stats[4]} ({getSign(combatant.modifierCalc(combatant.stats[4]))}{combatant.modifierCalc(combatant.stats[4])})";
+                tbChr.Text = $"{combatant.stats[5]} ({getSign(combatant.modifierCalc(combatant.stats[5]))}{combatant.modifierCalc(combatant.stats[5])})";
 
-                tbStrSave.Text = getSavingThrow("Strength");
-                tbDexSave.Text = getSavingThrow("Dexterity");
-                tbConSave.Text = getSavingThrow("Constitution");
-                tbIntSave.Text = getSavingThrow("Inteligence");
-                tbWisSave.Text = getSavingThrow("Wisdom");
-                tbChrSave.Text = getSavingThrow("Charisma");
+                tbStrSave.Text = $"{getSign(getSavingThrow("Strength"))}{getSavingThrow("Strength")}";
+                tbDexSave.Text = $"{getSign(getSavingThrow("Dexterity"))}{getSavingThrow("Dexterity")}";
+                tbConSave.Text = $"{getSign(getSavingThrow("Constitution"))}{getSavingThrow("Constitution")}";
+                tbIntSave.Text = $"{getSign(getSavingThrow("Inteligence"))}{getSavingThrow("Inteligence")}";
+                tbWisSave.Text = $"{getSign(getSavingThrow("Wisdom"))}{getSavingThrow("Wisdom")}";
+                tbChrSave.Text = $"{getSign(getSavingThrow("Charisma"))}{getSavingThrow("Charisma")}";
 
                 tbMovementSpeed.Text = $"{combatant.movementSpeed}ft";
                 tbBurrowSpeed.Text = $"{combatant.burrowSpeed}ft";
@@ -169,16 +149,10 @@ namespace Dungeons_and_Dragons_DM_Helper
 
             }
         }
-        private string getSavingThrow(string stat)
+        private int getSavingThrow(string stat)
         {
             Combatant combatant = lbCombatants.SelectedItem as Combatant;
-            int total = combatant.modifierCalc(combatant.stats[combatant.getStat(stat)]);
-            foreach (string savingThrow in combatant.savingThrows)
-            {
-                if (savingThrow.CompareTo(stat) == 0)
-                    total += combatant.proficiency; 
-            }
-            return total.ToString();
+            return combatant.getSavingThrowModifier(stat);
         }
 
         private string toTextBox(List<string> list)
@@ -189,6 +163,23 @@ namespace Dungeons_and_Dragons_DM_Helper
                 sb.Append($"{list[i]}, ");
             }
             return sb.ToString().Substring(0,sb.ToString().Length-2);
+        }
+
+        private void btnRollSavingThrows_Click(object sender, EventArgs e)
+        {
+            SavingThrow savingThrow = new SavingThrow(getListOfSelectedCombatants());
+
+            if (savingThrow.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
+        private string getSign(int modifier)
+        {
+            string sign = "";
+            if (modifier >= 0)
+                sign = "+";
+            return sign;
         }
     }
 }

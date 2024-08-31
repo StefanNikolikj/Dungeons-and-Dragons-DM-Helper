@@ -129,5 +129,15 @@ namespace Dungeons_and_Dragons_DM_Helper
                     return -1;
             }
         }
+        public int getSavingThrowModifier(string stat) 
+        {
+            int total = modifierCalc(stats[getStat(stat)]);
+            foreach (string savingThrow in savingThrows)
+            {
+                if (savingThrow.CompareTo(stat) == 0)
+                    total += proficiency;
+            }
+            return total;
+        }
     }
 }
