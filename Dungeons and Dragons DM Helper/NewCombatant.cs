@@ -46,5 +46,10 @@ namespace Dungeons_and_Dragons_DM_Helper
         {
 
         }
+
+        private void NewCombatant_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -178,6 +178,11 @@
             // 
             this.numChr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numChr.Location = new System.Drawing.Point(106, 311);
+            this.numChr.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numChr.Name = "numChr";
             this.numChr.Size = new System.Drawing.Size(120, 22);
             this.numChr.TabIndex = 5;
@@ -186,6 +191,11 @@
             // 
             this.numWis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numWis.Location = new System.Drawing.Point(106, 258);
+            this.numWis.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numWis.Name = "numWis";
             this.numWis.Size = new System.Drawing.Size(120, 22);
             this.numWis.TabIndex = 4;
@@ -194,6 +204,11 @@
             // 
             this.numInt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numInt.Location = new System.Drawing.Point(106, 202);
+            this.numInt.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numInt.Name = "numInt";
             this.numInt.Size = new System.Drawing.Size(120, 22);
             this.numInt.TabIndex = 3;
@@ -202,6 +217,11 @@
             // 
             this.numCon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numCon.Location = new System.Drawing.Point(106, 146);
+            this.numCon.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numCon.Name = "numCon";
             this.numCon.Size = new System.Drawing.Size(120, 22);
             this.numCon.TabIndex = 2;
@@ -210,6 +230,11 @@
             // 
             this.numDex.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numDex.Location = new System.Drawing.Point(106, 88);
+            this.numDex.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numDex.Name = "numDex";
             this.numDex.Size = new System.Drawing.Size(120, 22);
             this.numDex.TabIndex = 1;
@@ -218,6 +243,11 @@
             // 
             this.numStr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numStr.Location = new System.Drawing.Point(106, 35);
+            this.numStr.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numStr.Name = "numStr";
             this.numStr.Size = new System.Drawing.Size(120, 22);
             this.numStr.TabIndex = 0;
@@ -268,6 +298,11 @@
             // 
             this.numHp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numHp.Location = new System.Drawing.Point(6, 53);
+            this.numHp.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numHp.Name = "numHp";
             this.numHp.Size = new System.Drawing.Size(90, 22);
             this.numHp.TabIndex = 0;
@@ -516,6 +551,11 @@
             // 
             this.numClimbingSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numClimbingSpeed.Location = new System.Drawing.Point(142, 258);
+            this.numClimbingSpeed.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numClimbingSpeed.Name = "numClimbingSpeed";
             this.numClimbingSpeed.Size = new System.Drawing.Size(120, 22);
             this.numClimbingSpeed.TabIndex = 4;
@@ -524,6 +564,11 @@
             // 
             this.numFlyingSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numFlyingSpeed.Location = new System.Drawing.Point(142, 202);
+            this.numFlyingSpeed.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numFlyingSpeed.Name = "numFlyingSpeed";
             this.numFlyingSpeed.Size = new System.Drawing.Size(120, 22);
             this.numFlyingSpeed.TabIndex = 3;
@@ -532,6 +577,11 @@
             // 
             this.numSwimSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numSwimSpeed.Location = new System.Drawing.Point(142, 146);
+            this.numSwimSpeed.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numSwimSpeed.Name = "numSwimSpeed";
             this.numSwimSpeed.Size = new System.Drawing.Size(120, 22);
             this.numSwimSpeed.TabIndex = 2;
@@ -540,6 +590,11 @@
             // 
             this.numBurrowSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numBurrowSpeed.Location = new System.Drawing.Point(142, 88);
+            this.numBurrowSpeed.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numBurrowSpeed.Name = "numBurrowSpeed";
             this.numBurrowSpeed.Size = new System.Drawing.Size(120, 22);
             this.numBurrowSpeed.TabIndex = 1;
@@ -548,6 +603,11 @@
             // 
             this.numMovmentSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numMovmentSpeed.Location = new System.Drawing.Point(142, 35);
+            this.numMovmentSpeed.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numMovmentSpeed.Name = "numMovmentSpeed";
             this.numMovmentSpeed.Size = new System.Drawing.Size(120, 22);
             this.numMovmentSpeed.TabIndex = 0;
@@ -569,6 +629,7 @@
             this.Controls.Add(this.gbStats);
             this.Name = "NewCombatant";
             this.Text = "New Combatant";
+            this.Load += new System.EventHandler(this.NewCombatant_Load);
             this.gbStats.ResumeLayout(false);
             this.gbStats.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numChr)).EndInit();

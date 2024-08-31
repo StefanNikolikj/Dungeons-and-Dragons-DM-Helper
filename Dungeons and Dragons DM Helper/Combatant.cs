@@ -51,8 +51,9 @@ namespace Dungeons_and_Dragons_DM_Helper
             this.stats.Add( strength ); //0
             this.stats.Add( dexterity ); //1
             this.stats.Add ( constitution ); //2
-            this.stats.Add( wisdom ); //3
-            this.stats.Add( charisma );//4
+            this.stats.Add(intelligence); //3
+            this.stats.Add( wisdom ); //4
+            this.stats.Add( charisma );//5
             this.maxHP = hp;
             this.currentHP = hp;
             this.AC = ac;
@@ -63,6 +64,11 @@ namespace Dungeons_and_Dragons_DM_Helper
             this.savingThrows = savingThrows;
             this.passivePerception = calculatePassivePerception();
             this.initiative = 0;
+            this.movementSpeed = movementSpeed;
+            this.burrowSpeed = burrowSpeed;
+            this.swimSpeed = swimSpeed;
+            this.flyingSpeed = flightSpeed;
+            this.climbingSpeed = climbingSpeed;
         }
 
         public int modifierCalc(int stat)
@@ -97,10 +103,31 @@ namespace Dungeons_and_Dragons_DM_Helper
                 return false;
             }
         }
-
-        public int rollAttackRoll (int modifier)
+        public int getStat(string statName)
         {
-            return Dice.rollDice(20) + modifier;
+            switch (statName)
+            {
+                case "Strength":
+                case "Str":
+                    return 0;
+                case "Dexterity":
+                case "Dex":
+                    return 1;
+                case "Constitution":
+                case "Con":
+                    return 2;
+                case "Inteligence":
+                case "Int":
+                    return 3;
+                case "Wisdom":
+                case "Wis":
+                    return 4;
+                case "Charisma":
+                case "Chr":
+                    return 5;
+                default:
+                    return -1;
+            }
         }
     }
 }
