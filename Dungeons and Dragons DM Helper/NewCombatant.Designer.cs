@@ -70,6 +70,10 @@
             this.numSwimSpeed = new System.Windows.Forms.NumericUpDown();
             this.numBurrowSpeed = new System.Windows.Forms.NumericUpDown();
             this.numMovmentSpeed = new System.Windows.Forms.NumericUpDown();
+            this.gbWeapons = new System.Windows.Forms.GroupBox();
+            this.btnAddWeapon = new System.Windows.Forms.Button();
+            this.lbWeapons = new System.Windows.Forms.ListBox();
+            this.btnRemoveWeapon = new System.Windows.Forms.Button();
             this.gbStats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numChr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWis)).BeginInit();
@@ -91,6 +95,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSwimSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBurrowSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMovmentSpeed)).BeginInit();
+            this.gbWeapons.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbStats
@@ -612,11 +617,54 @@
             this.numMovmentSpeed.Size = new System.Drawing.Size(120, 22);
             this.numMovmentSpeed.TabIndex = 0;
             // 
+            // gbWeapons
+            // 
+            this.gbWeapons.Controls.Add(this.btnRemoveWeapon);
+            this.gbWeapons.Controls.Add(this.btnAddWeapon);
+            this.gbWeapons.Controls.Add(this.lbWeapons);
+            this.gbWeapons.Location = new System.Drawing.Point(1362, 26);
+            this.gbWeapons.Name = "gbWeapons";
+            this.gbWeapons.Size = new System.Drawing.Size(347, 394);
+            this.gbWeapons.TabIndex = 46;
+            this.gbWeapons.TabStop = false;
+            this.gbWeapons.Text = "Weapons/Attacks";
+            // 
+            // btnAddWeapon
+            // 
+            this.btnAddWeapon.Location = new System.Drawing.Point(13, 329);
+            this.btnAddWeapon.Name = "btnAddWeapon";
+            this.btnAddWeapon.Size = new System.Drawing.Size(324, 23);
+            this.btnAddWeapon.TabIndex = 45;
+            this.btnAddWeapon.Text = "Add new Weapon/Attack";
+            this.btnAddWeapon.UseVisualStyleBackColor = true;
+            this.btnAddWeapon.Click += new System.EventHandler(this.btnAddWeapon_Click);
+            // 
+            // lbWeapons
+            // 
+            this.lbWeapons.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWeapons.FormattingEnabled = true;
+            this.lbWeapons.Location = new System.Drawing.Point(13, 19);
+            this.lbWeapons.Name = "lbWeapons";
+            this.lbWeapons.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lbWeapons.Size = new System.Drawing.Size(324, 303);
+            this.lbWeapons.TabIndex = 44;
+            // 
+            // btnRemoveWeapon
+            // 
+            this.btnRemoveWeapon.Location = new System.Drawing.Point(13, 358);
+            this.btnRemoveWeapon.Name = "btnRemoveWeapon";
+            this.btnRemoveWeapon.Size = new System.Drawing.Size(324, 23);
+            this.btnRemoveWeapon.TabIndex = 46;
+            this.btnRemoveWeapon.Text = "Remove weapon/attack";
+            this.btnRemoveWeapon.UseVisualStyleBackColor = true;
+            this.btnRemoveWeapon.Click += new System.EventHandler(this.btnRemoveWeapon_Click);
+            // 
             // NewCombatant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1347, 432);
+            this.ClientSize = new System.Drawing.Size(1727, 432);
+            this.Controls.Add(this.gbWeapons);
             this.Controls.Add(this.gbSpeed);
             this.Controls.Add(this.gbVulnerabilities);
             this.Controls.Add(this.btnAddCombatant);
@@ -655,6 +703,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSwimSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBurrowSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMovmentSpeed)).EndInit();
+            this.gbWeapons.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -704,5 +753,9 @@
         private System.Windows.Forms.NumericUpDown numSwimSpeed;
         private System.Windows.Forms.NumericUpDown numBurrowSpeed;
         private System.Windows.Forms.NumericUpDown numMovmentSpeed;
+        private System.Windows.Forms.GroupBox gbWeapons;
+        private System.Windows.Forms.Button btnAddWeapon;
+        private System.Windows.Forms.ListBox lbWeapons;
+        private System.Windows.Forms.Button btnRemoveWeapon;
     }
 }

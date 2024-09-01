@@ -32,6 +32,9 @@
             this.btnRollInitiative = new System.Windows.Forms.Button();
             this.btnAddCombatant = new System.Windows.Forms.Button();
             this.gbDisplayCombatant = new System.Windows.Forms.GroupBox();
+            this.btnAddWeapon = new System.Windows.Forms.Button();
+            this.lblWeapons = new System.Windows.Forms.Label();
+            this.lbWeapons = new System.Windows.Forms.ListBox();
             this.btnSetHP = new System.Windows.Forms.Button();
             this.tbPassivePerception = new System.Windows.Forms.TextBox();
             this.lblPassivePerception = new System.Windows.Forms.Label();
@@ -93,9 +96,11 @@
             this.btnManualInitiative = new System.Windows.Forms.Button();
             this.btnRemoveCombatant = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnMakeAnAttack = new System.Windows.Forms.Button();
+            this.btnRemoveWeapon = new System.Windows.Forms.Button();
             this.gbDisplayCombatant.SuspendLayout();
             this.gbSavingThrows.SuspendLayout();
             this.gbSpeed.SuspendLayout();
@@ -117,7 +122,7 @@
             // 
             // btnRollInitiative
             // 
-            this.btnRollInitiative.Location = new System.Drawing.Point(12, 535);
+            this.btnRollInitiative.Location = new System.Drawing.Point(12, 526);
             this.btnRollInitiative.Name = "btnRollInitiative";
             this.btnRollInitiative.Size = new System.Drawing.Size(236, 23);
             this.btnRollInitiative.TabIndex = 1;
@@ -137,6 +142,10 @@
             // 
             // gbDisplayCombatant
             // 
+            this.gbDisplayCombatant.Controls.Add(this.btnRemoveWeapon);
+            this.gbDisplayCombatant.Controls.Add(this.btnAddWeapon);
+            this.gbDisplayCombatant.Controls.Add(this.lblWeapons);
+            this.gbDisplayCombatant.Controls.Add(this.lbWeapons);
             this.gbDisplayCombatant.Controls.Add(this.btnSetHP);
             this.gbDisplayCombatant.Controls.Add(this.tbPassivePerception);
             this.gbDisplayCombatant.Controls.Add(this.lblPassivePerception);
@@ -162,10 +171,40 @@
             this.gbDisplayCombatant.Controls.Add(this.lblName);
             this.gbDisplayCombatant.Location = new System.Drawing.Point(449, 27);
             this.gbDisplayCombatant.Name = "gbDisplayCombatant";
-            this.gbDisplayCombatant.Size = new System.Drawing.Size(1157, 560);
+            this.gbDisplayCombatant.Size = new System.Drawing.Size(1227, 560);
             this.gbDisplayCombatant.TabIndex = 3;
             this.gbDisplayCombatant.TabStop = false;
             this.gbDisplayCombatant.Text = "Display Combatant";
+            // 
+            // btnAddWeapon
+            // 
+            this.btnAddWeapon.Location = new System.Drawing.Point(883, 368);
+            this.btnAddWeapon.Name = "btnAddWeapon";
+            this.btnAddWeapon.Size = new System.Drawing.Size(324, 23);
+            this.btnAddWeapon.TabIndex = 43;
+            this.btnAddWeapon.Text = "Add new Weapon/Attack";
+            this.btnAddWeapon.UseVisualStyleBackColor = true;
+            this.btnAddWeapon.Click += new System.EventHandler(this.btnAddWeapon_Click);
+            // 
+            // lblWeapons
+            // 
+            this.lblWeapons.AutoSize = true;
+            this.lblWeapons.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWeapons.Location = new System.Drawing.Point(949, 42);
+            this.lblWeapons.Name = "lblWeapons";
+            this.lblWeapons.Size = new System.Drawing.Size(195, 25);
+            this.lblWeapons.TabIndex = 42;
+            this.lblWeapons.Text = "Weapons/Attacks";
+            // 
+            // lbWeapons
+            // 
+            this.lbWeapons.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWeapons.FormattingEnabled = true;
+            this.lbWeapons.Location = new System.Drawing.Point(883, 79);
+            this.lbWeapons.Name = "lbWeapons";
+            this.lbWeapons.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lbWeapons.Size = new System.Drawing.Size(324, 277);
+            this.lbWeapons.TabIndex = 41;
             // 
             // btnSetHP
             // 
@@ -202,7 +241,7 @@
             this.tbVulnerabilities.Location = new System.Drawing.Point(137, 517);
             this.tbVulnerabilities.Name = "tbVulnerabilities";
             this.tbVulnerabilities.ReadOnly = true;
-            this.tbVulnerabilities.Size = new System.Drawing.Size(681, 26);
+            this.tbVulnerabilities.Size = new System.Drawing.Size(1070, 26);
             this.tbVulnerabilities.TabIndex = 37;
             // 
             // tbImmunities
@@ -211,7 +250,7 @@
             this.tbImmunities.Location = new System.Drawing.Point(137, 472);
             this.tbImmunities.Name = "tbImmunities";
             this.tbImmunities.ReadOnly = true;
-            this.tbImmunities.Size = new System.Drawing.Size(681, 26);
+            this.tbImmunities.Size = new System.Drawing.Size(1070, 26);
             this.tbImmunities.TabIndex = 36;
             // 
             // tbResistances
@@ -220,7 +259,7 @@
             this.tbResistances.Location = new System.Drawing.Point(137, 427);
             this.tbResistances.Name = "tbResistances";
             this.tbResistances.ReadOnly = true;
-            this.tbResistances.Size = new System.Drawing.Size(681, 26);
+            this.tbResistances.Size = new System.Drawing.Size(1070, 26);
             this.tbResistances.TabIndex = 35;
             // 
             // lblVulnerabilities
@@ -722,7 +761,7 @@
             // 
             // tbName
             // 
-            this.tbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbName.Location = new System.Drawing.Point(20, 42);
             this.tbName.Name = "tbName";
             this.tbName.ReadOnly = true;
@@ -751,7 +790,7 @@
             // 
             // btnManualInitiative
             // 
-            this.btnManualInitiative.Location = new System.Drawing.Point(12, 564);
+            this.btnManualInitiative.Location = new System.Drawing.Point(12, 555);
             this.btnManualInitiative.Name = "btnManualInitiative";
             this.btnManualInitiative.Size = new System.Drawing.Size(236, 23);
             this.btnManualInitiative.TabIndex = 5;
@@ -777,9 +816,16 @@
             this.saveToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1624, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1715, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
@@ -795,18 +841,31 @@
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // newToolStripMenuItem
+            // btnMakeAnAttack
             // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.newToolStripMenuItem.Text = "New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            this.btnMakeAnAttack.Location = new System.Drawing.Point(256, 147);
+            this.btnMakeAnAttack.Name = "btnMakeAnAttack";
+            this.btnMakeAnAttack.Size = new System.Drawing.Size(187, 23);
+            this.btnMakeAnAttack.TabIndex = 8;
+            this.btnMakeAnAttack.Text = "Make an attack";
+            this.btnMakeAnAttack.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveWeapon
+            // 
+            this.btnRemoveWeapon.Location = new System.Drawing.Point(883, 397);
+            this.btnRemoveWeapon.Name = "btnRemoveWeapon";
+            this.btnRemoveWeapon.Size = new System.Drawing.Size(324, 23);
+            this.btnRemoveWeapon.TabIndex = 47;
+            this.btnRemoveWeapon.Text = "Remove weapon/attack";
+            this.btnRemoveWeapon.UseVisualStyleBackColor = true;
+            this.btnRemoveWeapon.Click += new System.EventHandler(this.btnRemoveWeapon_Click);
             // 
             // CombatTracker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1624, 599);
+            this.ClientSize = new System.Drawing.Size(1715, 599);
+            this.Controls.Add(this.btnMakeAnAttack);
             this.Controls.Add(this.btnRemoveCombatant);
             this.Controls.Add(this.btnRollSavingThrows);
             this.Controls.Add(this.btnManualInitiative);
@@ -902,6 +961,11 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.Label lblWeapons;
+        private System.Windows.Forms.ListBox lbWeapons;
+        private System.Windows.Forms.Button btnAddWeapon;
+        private System.Windows.Forms.Button btnMakeAnAttack;
+        private System.Windows.Forms.Button btnRemoveWeapon;
     }
 }
 

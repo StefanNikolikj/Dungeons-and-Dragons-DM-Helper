@@ -75,8 +75,17 @@ namespace Dungeons_and_Dragons_DM_Helper
         }
         private int rollSavingThrow(Combatant combatant)
         {
-            int result = Dice.rollDice(20) + combatant.getSavingThrowModifier(ddSavingThrowType.SelectedItem.ToString());
-            return result;
+            int result = 0;
+            if (rbAdvantage.Checked)
+            {
+                result = Dice.rollWithAdvantage(20);
+            }
+            else if (rbDisadvantage.Checked)
+            {
+                result = Dice.rollWithDisadvantage(20);
+            }
+            else result = Dice.rollDice(20);
+            return result + combatant.getSavingThrowModifier(ddSavingThrowType.SelectedItem.ToString());
         }
 
         private void cbRollDamage_CheckedChanged(object sender, EventArgs e)
@@ -91,6 +100,11 @@ namespace Dungeons_and_Dragons_DM_Helper
         private void btnReturn_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void ddSavingThrowType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

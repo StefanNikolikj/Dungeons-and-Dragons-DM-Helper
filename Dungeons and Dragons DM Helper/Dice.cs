@@ -14,5 +14,13 @@ namespace Dungeons_and_Dragons_DM_Helper
         {
             return RANDOM.Next(1,sides);
         }
+        public static int rollWithAdvantage(int sides)
+        {
+            return Math.Max(RANDOM.Next(1, sides), RANDOM.Next(1, sides));
+        }
+        public static int rollWithDisadvantage(int sides)
+        {
+            return Math.Min(RANDOM.Next(1, sides), RANDOM.Next(1, sides));
+        }
     }
 }

@@ -76,6 +76,7 @@ namespace Dungeons_and_Dragons_DM_Helper
             {
                 lbCombatants.Items.Add(combatant);
             }
+            updateDisplay();
         }
         private List<Combatant> getListOfEveryCombatant()
         {
@@ -147,6 +148,7 @@ namespace Dungeons_and_Dragons_DM_Helper
                 tbImmunities.Text = toTextBox(combatant.damageImmunities);
                 tbVulnerabilities.Text = toTextBox(combatant.damageVulnerabilities);
 
+                updateWeapons(combatant.weapons);
             }
         }
         private int getSavingThrow(string stat)
@@ -246,6 +248,40 @@ namespace Dungeons_and_Dragons_DM_Helper
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             lbCombatants.Items.Clear();
+        }
+        private void updateWeapons(List<Weapon> weapons)
+        {
+            lbWeapons.Items.Clear();
+            foreach (Weapon weapon in weapons)
+            {
+                lbWeapons.Items.Add(weapon);
+            }
+        }
+
+        private void btnAddWeapon_Click(object sender, EventArgs e)
+        {
+            Combatant combatant = lbCombatants.SelectedItem as Combatant;
+            AddWeapon addWeapon = new AddWeapon();
+            if (addWeapon.ShowDialog() == DialogResult.OK)
+            {
+                combatant.weapons.Add(addWeapon.weapon);
+                lbCombatants.Items[lbCombatants.SelectedIndex] = combatant;
+                updateDisplay();
+            }
+        }
+
+        private void btnRemoveWeapon_Click(object sender, EventArgs e)
+        {
+            if (lbWeapons.Items.Count > 0)
+            {
+                Combatant combatant = lbCombatants.SelectedItem as Combatant;
+                if (MessageBox.Show("Are you sure you want to remove this weapon/attack from the list?", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    combatant.weapons.RemoveAt(lbWeapons.SelectedIndex);
+                    lbCombatants.Items[lbCombatants.SelectedIndex] = combatant;
+                    updateDisplay();
+                }
+            }
         }
     }
 }

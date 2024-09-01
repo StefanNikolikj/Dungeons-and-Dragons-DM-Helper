@@ -42,6 +42,8 @@ namespace Dungeons_and_Dragons_DM_Helper
         public HashSet<string> damageImmunities { get; set; }
         public HashSet<string> damageVulnerabilities { get; set; }
         public HashSet<string> conditionImmunities { get; set; }
+        
+        public List<Weapon> weapons { get; set; }
 
         public int initiative { get; set; }
         public Combatant()
@@ -49,7 +51,7 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         }
 
-        public Combatant(string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int hp, int ac, int proficiency,HashSet<string> damageResistances, HashSet<string> damageImmunities, HashSet<string> damageVulnerabilities,HashSet<string> savingThrows, int movementSpeed, int burrowSpeed, int swimSpeed, int flightSpeed, int climbingSpeed)
+        public Combatant(string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int hp, int ac, int proficiency,HashSet<string> damageResistances, HashSet<string> damageImmunities, HashSet<string> damageVulnerabilities,HashSet<string> savingThrows, int movementSpeed, int burrowSpeed, int swimSpeed, int flightSpeed, int climbingSpeed, List<Weapon> weapons)
         {
             this.name = name;
             this.stats = new List<int>();
@@ -74,6 +76,7 @@ namespace Dungeons_and_Dragons_DM_Helper
             this.swimSpeed = swimSpeed;
             this.flyingSpeed = flightSpeed;
             this.climbingSpeed = climbingSpeed;
+            this.weapons = weapons;
         }
 
         public int modifierCalc(int stat)

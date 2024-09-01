@@ -40,8 +40,11 @@
             this.ddDamageType = new System.Windows.Forms.ComboBox();
             this.lblDamageType = new System.Windows.Forms.Label();
             this.gbRollDamage = new System.Windows.Forms.GroupBox();
-            this.btnReturn = new System.Windows.Forms.Button();
             this.cbHalfDamage = new System.Windows.Forms.CheckBox();
+            this.btnReturn = new System.Windows.Forms.Button();
+            this.rbAdvantage = new System.Windows.Forms.RadioButton();
+            this.rbDisadvantage = new System.Windows.Forms.RadioButton();
+            this.rbNone = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.numSaveDC)).BeginInit();
             this.gbRollDamage.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +65,7 @@
             this.ddSavingThrowType.Name = "ddSavingThrowType";
             this.ddSavingThrowType.Size = new System.Drawing.Size(121, 24);
             this.ddSavingThrowType.TabIndex = 0;
+            this.ddSavingThrowType.SelectedIndexChanged += new System.EventHandler(this.ddSavingThrowType_SelectedIndexChanged);
             // 
             // lblChooseSavingThrow
             // 
@@ -96,7 +100,7 @@
             this.btnRollSaveThrows.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRollSaveThrows.Location = new System.Drawing.Point(15, 333);
             this.btnRollSaveThrows.Name = "btnRollSaveThrows";
-            this.btnRollSaveThrows.Size = new System.Drawing.Size(173, 28);
+            this.btnRollSaveThrows.Size = new System.Drawing.Size(189, 28);
             this.btnRollSaveThrows.TabIndex = 4;
             this.btnRollSaveThrows.Text = "Roll Saves";
             this.btnRollSaveThrows.UseVisualStyleBackColor = true;
@@ -189,17 +193,6 @@
             this.gbRollDamage.TabStop = false;
             this.gbRollDamage.Text = "Roll Damage";
             // 
-            // btnReturn
-            // 
-            this.btnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReturn.Location = new System.Drawing.Point(264, 333);
-            this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(173, 28);
-            this.btnReturn.TabIndex = 32;
-            this.btnReturn.Text = "Finish";
-            this.btnReturn.UseVisualStyleBackColor = true;
-            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
-            // 
             // cbHalfDamage
             // 
             this.cbHalfDamage.AutoSize = true;
@@ -210,11 +203,58 @@
             this.cbHalfDamage.Text = "Does this attack deal half damage when saved?";
             this.cbHalfDamage.UseVisualStyleBackColor = true;
             // 
+            // btnReturn
+            // 
+            this.btnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReturn.Location = new System.Drawing.Point(277, 333);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(173, 28);
+            this.btnReturn.TabIndex = 32;
+            this.btnReturn.Text = "Finish";
+            this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
+            // 
+            // rbAdvantage
+            // 
+            this.rbAdvantage.AutoSize = true;
+            this.rbAdvantage.Location = new System.Drawing.Point(15, 297);
+            this.rbAdvantage.Name = "rbAdvantage";
+            this.rbAdvantage.Size = new System.Drawing.Size(77, 17);
+            this.rbAdvantage.TabIndex = 33;
+            this.rbAdvantage.TabStop = true;
+            this.rbAdvantage.Text = "Advantage";
+            this.rbAdvantage.UseVisualStyleBackColor = true;
+            // 
+            // rbDisadvantage
+            // 
+            this.rbDisadvantage.AutoSize = true;
+            this.rbDisadvantage.Location = new System.Drawing.Point(200, 297);
+            this.rbDisadvantage.Name = "rbDisadvantage";
+            this.rbDisadvantage.Size = new System.Drawing.Size(91, 17);
+            this.rbDisadvantage.TabIndex = 34;
+            this.rbDisadvantage.TabStop = true;
+            this.rbDisadvantage.Text = "Disadvantage";
+            this.rbDisadvantage.UseVisualStyleBackColor = true;
+            // 
+            // rbNone
+            // 
+            this.rbNone.AutoSize = true;
+            this.rbNone.Location = new System.Drawing.Point(399, 297);
+            this.rbNone.Name = "rbNone";
+            this.rbNone.Size = new System.Drawing.Size(51, 17);
+            this.rbNone.TabIndex = 35;
+            this.rbNone.TabStop = true;
+            this.rbNone.Text = "None";
+            this.rbNone.UseVisualStyleBackColor = true;
+            // 
             // SavingThrow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 396);
+            this.Controls.Add(this.rbNone);
+            this.Controls.Add(this.rbDisadvantage);
+            this.Controls.Add(this.rbAdvantage);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.gbRollDamage);
             this.Controls.Add(this.cbRollDamage);
@@ -250,5 +290,8 @@
         private System.Windows.Forms.GroupBox gbRollDamage;
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.CheckBox cbHalfDamage;
+        private System.Windows.Forms.RadioButton rbAdvantage;
+        private System.Windows.Forms.RadioButton rbDisadvantage;
+        private System.Windows.Forms.RadioButton rbNone;
     }
 }
