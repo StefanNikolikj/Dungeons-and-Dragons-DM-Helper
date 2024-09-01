@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace Dungeons_and_Dragons_DM_Helper
 {
     public partial class CombatTracker : Form
     {
+        public string FileName { get; set; }
         public CombatTracker()
         {
             InitializeComponent();
+            FileName = "";
         }
 
         private void lbCombatants_SelectedIndexChanged(object sender, EventArgs e)
@@ -190,6 +196,56 @@ namespace Dungeons_and_Dragons_DM_Helper
                 lbCombatants.Items[lbCombatants.SelectedIndex] = combatant;
                 updateDisplay();
             }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                FileName = openFileDialog.FileName;
+                deserializeFile(FileName);
+
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List <Combatant> combatants = getListOfEveryCombatant();
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                FileName = saveFileDialog.FileName;
+                serializeFile(FileName,combatants);
+                
+            }
+        }
+        private void serializeFile(string path,List<Combatant> combatants)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Combatant>));
+
+            using (FileStream fstream = new FileStream(path, FileMode.Create))
+            {
+                serializer.Serialize(fstream, combatants);
+            }
+        }
+        private void deserializeFile(string path)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Combatant>));
+
+            using (FileStream fstream = new FileStream(path, FileMode.Open))
+            {
+                List<Combatant> newCombatants = (List<Combatant>)serializer.Deserialize(fstream);
+                updateCombatants(newCombatants);
+            }
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lbCombatants.Items.Clear();
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dungeons_and_Dragons_DM_Helper
 {
+    [Serializable]
     public class Combatant
     {
         public string name {  get; set; }
@@ -43,6 +44,10 @@ namespace Dungeons_and_Dragons_DM_Helper
         public HashSet<string> conditionImmunities { get; set; }
 
         public int initiative { get; set; }
+        public Combatant()
+        {
+
+        }
 
         public Combatant(string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int hp, int ac, int proficiency,HashSet<string> damageResistances, HashSet<string> damageImmunities, HashSet<string> damageVulnerabilities,HashSet<string> savingThrows, int movementSpeed, int burrowSpeed, int swimSpeed, int flightSpeed, int climbingSpeed)
         {

@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace Dungeons_and_Dragons_DM_Helper
 {
+    [Serializable]
     public class Weapon
     {
-        string name {  get; set; }
-        List<string> damageDice {  get; set; } // as an example, damage die can be 2d6 where the format is: 2 - num of dice to roll, d6 - type of dice rolled
-        List<string> damageTypes { get; set; } // can be piercing, slashing, cold, radiant, etc...
+        public string name {  get; set; }
+        public List<string> damageDice {  get; set; } // as an example, damage die can be 2d6 where the format is: 2 - num of dice to roll, d6 - type of dice rolled
+        public List<string> damageTypes { get; set; } // can be piercing, slashing, cold, radiant, etc...
 
-        int damageModifier { get; set; }
+        public int damageModifier { get; set; }
         
-        string weaponType { get; set; } // can only be str or dex
+        public string weaponType { get; set; } // can only be str or dex
 
         public Weapon(string name, List<string> damageDice, List<string> damageTypes, int damageModifier, string weaponType)
         {
