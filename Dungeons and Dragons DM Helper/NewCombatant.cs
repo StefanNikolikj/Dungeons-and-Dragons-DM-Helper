@@ -22,6 +22,12 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         private void btnAddCombatant_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(tbName.Text))
+            {
+                tbName.Focus();
+                epAddNewCharacter.SetError(tbName, "Plase enter a name");
+                return;
+            }
             HashSet<string> damageResitances = addToSet(clbResistances.CheckedItems);
             HashSet<string> damageImmunities = addToSet(clbImmunities.CheckedItems);
             HashSet<string> damageVulnerabilities = addToSet(clbVulnerabilities.CheckedItems);
@@ -51,6 +57,20 @@ namespace Dungeons_and_Dragons_DM_Helper
         private void NewCombatant_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void tbName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbName.Text))
+            {
+                epAddNewCharacter.SetError(tbName,"Plase enter a name");
+                e.Cancel = true;
+            }
+            else
+            {
+                epAddNewCharacter.SetError(tbName, null);
+                e.Cancel = false;
+            }
         }
     }
 }

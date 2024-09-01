@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ddSavingThrowType = new System.Windows.Forms.ComboBox();
             this.lblChooseSavingThrow = new System.Windows.Forms.Label();
             this.lblEnterSaveDC = new System.Windows.Forms.Label();
@@ -45,8 +46,10 @@
             this.rbAdvantage = new System.Windows.Forms.RadioButton();
             this.rbDisadvantage = new System.Windows.Forms.RadioButton();
             this.rbNone = new System.Windows.Forms.RadioButton();
+            this.epSavingThrow = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numSaveDC)).BeginInit();
             this.gbRollDamage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epSavingThrow)).BeginInit();
             this.SuspendLayout();
             // 
             // ddSavingThrowType
@@ -143,6 +146,7 @@
             this.tbEnterDice.Name = "tbEnterDice";
             this.tbEnterDice.Size = new System.Drawing.Size(121, 29);
             this.tbEnterDice.TabIndex = 29;
+            this.tbEnterDice.Validating += new System.ComponentModel.CancelEventHandler(this.tbEnterDice_Validating);
             // 
             // ddDamageType
             // 
@@ -188,7 +192,7 @@
             this.gbRollDamage.Enabled = false;
             this.gbRollDamage.Location = new System.Drawing.Point(493, 30);
             this.gbRollDamage.Name = "gbRollDamage";
-            this.gbRollDamage.Size = new System.Drawing.Size(400, 167);
+            this.gbRollDamage.Size = new System.Drawing.Size(420, 167);
             this.gbRollDamage.TabIndex = 8;
             this.gbRollDamage.TabStop = false;
             this.gbRollDamage.Text = "Roll Damage";
@@ -247,11 +251,15 @@
             this.rbNone.Text = "None";
             this.rbNone.UseVisualStyleBackColor = true;
             // 
+            // epSavingThrow
+            // 
+            this.epSavingThrow.ContainerControl = this;
+            // 
             // SavingThrow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(908, 396);
+            this.ClientSize = new System.Drawing.Size(925, 396);
             this.Controls.Add(this.rbNone);
             this.Controls.Add(this.rbDisadvantage);
             this.Controls.Add(this.rbAdvantage);
@@ -266,9 +274,11 @@
             this.Controls.Add(this.ddSavingThrowType);
             this.Name = "SavingThrow";
             this.Text = "SavingThrow";
+            this.Load += new System.EventHandler(this.SavingThrow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numSaveDC)).EndInit();
             this.gbRollDamage.ResumeLayout(false);
             this.gbRollDamage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epSavingThrow)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,5 +303,6 @@
         private System.Windows.Forms.RadioButton rbAdvantage;
         private System.Windows.Forms.RadioButton rbDisadvantage;
         private System.Windows.Forms.RadioButton rbNone;
+        private System.Windows.Forms.ErrorProvider epSavingThrow;
     }
 }

@@ -30,12 +30,13 @@
         {
             this.numInitiative = new System.Windows.Forms.NumericUpDown();
             this.btnSetInitiative = new System.Windows.Forms.Button();
+            this.lblSetInitiative = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numInitiative)).BeginInit();
             this.SuspendLayout();
             // 
             // numInitiative
             // 
-            this.numInitiative.Location = new System.Drawing.Point(12, 27);
+            this.numInitiative.Location = new System.Drawing.Point(12, 59);
             this.numInitiative.Name = "numInitiative";
             this.numInitiative.Size = new System.Drawing.Size(263, 20);
             this.numInitiative.TabIndex = 0;
@@ -50,17 +51,29 @@
             this.btnSetInitiative.UseVisualStyleBackColor = true;
             this.btnSetInitiative.Click += new System.EventHandler(this.btnSetInitiative_Click);
             // 
+            // lblSetInitiative
+            // 
+            this.lblSetInitiative.AutoSize = true;
+            this.lblSetInitiative.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSetInitiative.Location = new System.Drawing.Point(86, 40);
+            this.lblSetInitiative.Name = "lblSetInitiative";
+            this.lblSetInitiative.Size = new System.Drawing.Size(119, 16);
+            this.lblSetInitiative.TabIndex = 2;
+            this.lblSetInitiative.Text = "Enter New Initiative";
+            // 
             // SetInitiative
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(287, 161);
+            this.Controls.Add(this.lblSetInitiative);
             this.Controls.Add(this.btnSetInitiative);
             this.Controls.Add(this.numInitiative);
             this.Name = "SetInitiative";
             this.Text = "Set Initiative";
             ((System.ComponentModel.ISupportInitialize)(this.numInitiative)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -68,5 +81,6 @@
 
         private System.Windows.Forms.NumericUpDown numInitiative;
         private System.Windows.Forms.Button btnSetInitiative;
+        private System.Windows.Forms.Label lblSetInitiative;
     }
 }

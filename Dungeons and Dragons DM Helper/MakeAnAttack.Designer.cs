@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbCombatants = new System.Windows.Forms.ListBox();
             this.lblChooseToAttack = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,7 +40,9 @@
             this.lblNumberOfAttacks = new System.Windows.Forms.Label();
             this.rtbRollResults = new System.Windows.Forms.RichTextBox();
             this.btnFinish = new System.Windows.Forms.Button();
+            this.epMakeAnAttack = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numNumberOfDice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epMakeAnAttack)).BeginInit();
             this.SuspendLayout();
             // 
             // lbCombatants
@@ -51,6 +54,7 @@
             this.lbCombatants.Name = "lbCombatants";
             this.lbCombatants.Size = new System.Drawing.Size(236, 468);
             this.lbCombatants.TabIndex = 1;
+            this.lbCombatants.Validating += new System.ComponentModel.CancelEventHandler(this.lbCombatants_Validating);
             // 
             // lblChooseToAttack
             // 
@@ -169,6 +173,10 @@
             this.btnFinish.UseVisualStyleBackColor = true;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
+            // epMakeAnAttack
+            // 
+            this.epMakeAnAttack.ContainerControl = this;
+            // 
             // MakeAnAttack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -186,8 +194,10 @@
             this.Controls.Add(this.lblChooseToAttack);
             this.Controls.Add(this.lbCombatants);
             this.Name = "MakeAnAttack";
-            this.Text = "MakeAnAttack";
+            this.Text = "Make an Attack";
+            this.Load += new System.EventHandler(this.MakeAnAttack_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numNumberOfDice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epMakeAnAttack)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,5 +216,6 @@
         private System.Windows.Forms.Label lblNumberOfAttacks;
         private System.Windows.Forms.RichTextBox rtbRollResults;
         private System.Windows.Forms.Button btnFinish;
+        private System.Windows.Forms.ErrorProvider epMakeAnAttack;
     }
 }

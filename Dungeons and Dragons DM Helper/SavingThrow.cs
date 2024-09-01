@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,6 +22,13 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         private void btnRollSaveThrows_Click(object sender, EventArgs e)
         {
+            Regex regex = new Regex(@"^\d+d\d+$");
+            if (!regex.IsMatch(tbEnterDice.Text) && gbRollDamage.Enabled)
+            {
+                tbEnterDice.Focus();
+                epSavingThrow.SetError(tbEnterDice, "Please enter a valid dice");
+                return;
+            }
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < this.combatants.Count; i++)
             {
@@ -104,6 +112,28 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         private void ddSavingThrowType_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void SavingThrow_Load(object sender, EventArgs e)
+        {
+            ddDamageType.SelectedIndex = 0;
+            ddSavingThrowType.SelectedIndex = 0;
+        }
+
+        private void tbEnterDice_Validating(object sender, CancelEventArgs e)
+        {
+            Regex regex = new Regex(@"^\d+d\d+$");
+            if (!regex.IsMatch(tbEnterDice.Text) && gbRollDamage.Enabled)
+            {
+                epSavingThrow.SetError(tbEnterDice, "Please enter a valid dice (Must be in format [number]d[number]");
+                e.Cancel = true;
+            }
+            else
+            {
+                epSavingThrow.SetError(tbEnterDice, null);
+                e.Cancel = false;
+            }
 
         }
     }

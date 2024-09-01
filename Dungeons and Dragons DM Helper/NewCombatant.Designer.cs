@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gbStats = new System.Windows.Forms.GroupBox();
             this.lblChr = new System.Windows.Forms.Label();
             this.lblWis = new System.Windows.Forms.Label();
@@ -70,6 +71,7 @@
             this.numSwimSpeed = new System.Windows.Forms.NumericUpDown();
             this.numBurrowSpeed = new System.Windows.Forms.NumericUpDown();
             this.numMovmentSpeed = new System.Windows.Forms.NumericUpDown();
+            this.epAddNewCharacter = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbStats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numChr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWis)).BeginInit();
@@ -91,6 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSwimSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBurrowSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMovmentSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epAddNewCharacter)).BeginInit();
             this.SuspendLayout();
             // 
             // gbStats
@@ -324,6 +327,7 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(232, 22);
             this.tbName.TabIndex = 3;
+            this.tbName.Validating += new System.ComponentModel.CancelEventHandler(this.tbName_Validating);
             // 
             // gbSavingThrowProficiencies
             // 
@@ -612,6 +616,10 @@
             this.numMovmentSpeed.Size = new System.Drawing.Size(120, 22);
             this.numMovmentSpeed.TabIndex = 0;
             // 
+            // epAddNewCharacter
+            // 
+            this.epAddNewCharacter.ContainerControl = this;
+            // 
             // NewCombatant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -655,6 +663,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numSwimSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBurrowSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMovmentSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epAddNewCharacter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -704,5 +713,6 @@
         private System.Windows.Forms.NumericUpDown numSwimSpeed;
         private System.Windows.Forms.NumericUpDown numBurrowSpeed;
         private System.Windows.Forms.NumericUpDown numMovmentSpeed;
+        private System.Windows.Forms.ErrorProvider epAddNewCharacter;
     }
 }

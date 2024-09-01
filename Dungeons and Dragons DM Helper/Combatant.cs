@@ -14,19 +14,13 @@ namespace Dungeons_and_Dragons_DM_Helper
         // Stats
 
         public List<int> stats {  get; set; } //(index of elements and their meanings) 0 - str, 1 - dex, 2 - con, 3 - int, 4 - wis, 5 - chr
-        //public int strength;
-        //public int dexterity;
-        //public int constitution;
-        //public int intelligence;
-        //public int wisdom;
-        //public int charisma;
 
         //health and armor class
         public int maxHP {  get; set; }
         public int currentHP { get; set; }
         public int tempHP { get; set; } // not sure if needed
         public int AC {  get; set; }
-        //proficiency bonux
+        //proficiency bonus
         public int proficiency { get; set; }
         //speeds
         public int movementSpeed { get; set; }
@@ -35,7 +29,6 @@ namespace Dungeons_and_Dragons_DM_Helper
         public int flyingSpeed {  get; set; }
         public int climbingSpeed {  get; set; } // dunno how neccecary this one is
         public int passivePerception {  get; set; }
-        public int passiveInsight {  get; set; } // homebrew shit for Stefan
 
         public HashSet<string> savingThrows { get; set; }
         public HashSet<string> damageResistances { get; set; }

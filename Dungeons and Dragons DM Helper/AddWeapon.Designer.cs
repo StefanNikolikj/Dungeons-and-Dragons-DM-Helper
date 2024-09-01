@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tbRollTotal = new System.Windows.Forms.TextBox();
             this.gbAddDice = new System.Windows.Forms.GroupBox();
             this.btnd8 = new System.Windows.Forms.Button();
@@ -52,10 +53,12 @@
             this.numNumberOfDice = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddDice = new System.Windows.Forms.Button();
+            this.epAddWeapon = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbAddDice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numDamageModifier)).BeginInit();
             this.gbRollDamage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numNumberOfDice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epAddWeapon)).BeginInit();
             this.SuspendLayout();
             // 
             // tbRollTotal
@@ -159,6 +162,7 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(232, 22);
             this.tbName.TabIndex = 12;
+            this.tbName.Validating += new System.ComponentModel.CancelEventHandler(this.tbName_Validating);
             // 
             // lblName
             // 
@@ -340,6 +344,10 @@
             this.btnAddDice.UseVisualStyleBackColor = true;
             this.btnAddDice.Click += new System.EventHandler(this.btnAddDice_Click);
             // 
+            // epAddWeapon
+            // 
+            this.epAddWeapon.ContainerControl = this;
+            // 
             // AddWeapon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,11 +367,13 @@
             this.Controls.Add(this.gbAddDice);
             this.Name = "AddWeapon";
             this.Text = "Add a Weapon/Attack";
+            this.Load += new System.EventHandler(this.AddWeapon_Load);
             this.gbAddDice.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numDamageModifier)).EndInit();
             this.gbRollDamage.ResumeLayout(false);
             this.gbRollDamage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numNumberOfDice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epAddWeapon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -395,5 +405,6 @@
         private System.Windows.Forms.NumericUpDown numNumberOfDice;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAddDice;
+        private System.Windows.Forms.ErrorProvider epAddWeapon;
     }
 }

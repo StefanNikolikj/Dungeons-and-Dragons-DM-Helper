@@ -16,6 +16,10 @@ namespace Dungeons_and_Dragons_DM_Helper
         Combatant attackingCombatant { get; set; }
         public Combatant defendingCombatant { get; set; }
         Weapon selectedWeapon { get; set; }
+        private void MakeAnAttack_Load(object sender, EventArgs e)
+        {
+
+        }
 
         public MakeAnAttack(List<Combatant> combatants, Combatant combatant, Weapon selectedWeapon)
         {
@@ -36,6 +40,11 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         private void btnRollToHit_Click(object sender, EventArgs e)
         {
+            if (lbCombatants.SelectedIndex == -1)
+            {
+                epMakeAnAttack.SetError(lbCombatants, "Please select a Combatant");
+                return;
+            }
             damageToCombatant = 0;
             rtbRollResults.Text = string.Empty;
             this.defendingCombatant = lbCombatants.SelectedItem as Combatant;
@@ -91,6 +100,20 @@ namespace Dungeons_and_Dragons_DM_Helper
         private void btnFinish_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void lbCombatants_Validating(object sender, CancelEventArgs e)
+        {
+            if (lbCombatants.SelectedIndex == -1)
+            {
+                epMakeAnAttack.SetError(lbCombatants, "Please select a Combatant");
+                e.Cancel = true;
+            }
+            else
+            {
+                epMakeAnAttack.SetError(lbCombatants, null);
+                e.Cancel = false;
+            }
         }
     }
  

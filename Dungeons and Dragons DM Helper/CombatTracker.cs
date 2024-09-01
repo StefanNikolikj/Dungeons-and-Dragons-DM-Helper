@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using System.Runtime.InteropServices;
 
 namespace Dungeons_and_Dragons_DM_Helper
 {
@@ -39,6 +40,11 @@ namespace Dungeons_and_Dragons_DM_Helper
         }
         private void btnRemoveCombatant_Click(object sender, EventArgs e)
         {
+            if (lbCombatants.SelectedIndex == -1)
+            {
+                epCombatTracker.SetError(lbCombatants, "Please select a Combatant");
+                return;
+            }
             if (lbCombatants.Items.Count > 0)
             {
                 if (MessageBox.Show("Are you sure you want to remove this character from the combat?", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -50,6 +56,11 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         private void btnRollInitiative_Click(object sender, EventArgs e)
         {
+            if (getListOfSelectedCombatants().Count == 0)
+            {
+                epCombatTracker.SetError(lbCombatants, "Please select a Combatant");
+                return;
+            }
             List<Combatant> combatants = getListOfSelectedCombatants();
             foreach (Combatant combatant in combatants)
             {
@@ -97,6 +108,11 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         private void btnManualInitiative_Click(object sender, EventArgs e)
         {
+            if (lbCombatants.SelectedIndex == -1)
+            {
+                epCombatTracker.SetError(lbCombatants, "Please select a Combatant");
+                return;
+            }
             SetInitiative setInitiative = new SetInitiative();
 
             if (setInitiative.ShowDialog() == DialogResult.OK)
@@ -166,6 +182,11 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         private void btnRollSavingThrows_Click(object sender, EventArgs e)
         {
+            if (getListOfSelectedCombatants().Count == 0)
+            {
+                epCombatTracker.SetError(lbCombatants, "Please select a Combatant");
+                return;
+            }
             List<Combatant> listOfSelectedCombatants = getListOfSelectedCombatants();
             
             SavingThrow savingThrow = new SavingThrow(listOfSelectedCombatants);
@@ -175,6 +196,7 @@ namespace Dungeons_and_Dragons_DM_Helper
                 for (int i = 0; i < lbCombatants.SelectedIndices.Count; i++)
                 {
                     lbCombatants.Items[lbCombatants.SelectedIndices[i]] = savingThrow.combatants[i];
+                    checkForHp(savingThrow.combatants[i]);
                 }
                 updateDisplay();
             }
@@ -189,13 +211,18 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         private void btnSetHP_Click(object sender, EventArgs e)
         {
+            if (lbCombatants.SelectedIndex == -1)
+            {
+                epCombatTracker.SetError(lbCombatants, "Please select a Combatant");
+                return;
+            }
             Combatant combatant = lbCombatants.SelectedItem as Combatant; 
             SetHP setHP = new SetHP(combatant.currentHP,combatant.maxHP);
 
             if (setHP.ShowDialog() == DialogResult.OK)
             {
                 combatant.currentHP = setHP.hp;
-                lbCombatants.Items[lbCombatants.SelectedIndex] = combatant;
+                checkForHp(combatant);
                 updateDisplay();
             }
         }
@@ -260,6 +287,11 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         private void btnAddWeapon_Click(object sender, EventArgs e)
         {
+            if (lbCombatants.SelectedIndex == -1)
+            {
+                epCombatTracker.SetError(lbCombatants, "Please select a Combatant");
+                return;
+            }
             Combatant combatant = lbCombatants.SelectedItem as Combatant;
             AddWeapon addWeapon = new AddWeapon();
             if (addWeapon.ShowDialog() == DialogResult.OK)
@@ -275,20 +307,24 @@ namespace Dungeons_and_Dragons_DM_Helper
                         break;
                 }
                 combatant.weapons.Add(weapon);
-                lbCombatants.Items[lbCombatants.SelectedIndex] = combatant;
                 updateDisplay();
             }
         }
 
         private void btnRemoveWeapon_Click(object sender, EventArgs e)
         {
+            if (lbWeapons.SelectedIndex == -1)
+            {
+                epCombatTracker.SetError(lbWeapons, "Please select a Weapon");
+                return;
+            }
+
             if (lbWeapons.Items.Count > 0)
             {
                 Combatant combatant = lbCombatants.SelectedItem as Combatant;
                 if (MessageBox.Show("Are you sure you want to remove this weapon/attack from the list?", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     combatant.weapons.RemoveAt(lbWeapons.SelectedIndex);
-                    lbCombatants.Items[lbCombatants.SelectedIndex] = combatant;
                     updateDisplay();
                 }
             }
@@ -296,6 +332,16 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         private void btnMakeAnAttack_Click(object sender, EventArgs e)
         {
+            if (lbCombatants.SelectedIndex == -1)
+            {
+                epCombatTracker.SetError(lbCombatants, "Please select a Combatant");
+                return;
+            }
+            else if (lbWeapons.SelectedIndex == -1)
+            {
+                epCombatTracker.SetError(lbWeapons, "Please select a Weapon");
+                return;
+            }
             List<Combatant> combatants = getListOfEveryCombatant();
             Combatant selectedCombatant = lbCombatants.SelectedItem as Combatant;
             Weapon selectedWeapon = lbWeapons.SelectedItem as Weapon;
@@ -305,8 +351,41 @@ namespace Dungeons_and_Dragons_DM_Helper
 
             if(makeAnAttack.ShowDialog() == DialogResult.Yes)
             {
-                
+                checkForHp(makeAnAttack.defendingCombatant);
             }
-        }     
+        }
+        private void checkForHp(Combatant combatant)
+        {
+            if (combatant.currentHP == 0)
+                lbCombatants.Items.Remove(combatant);
+        }
+
+        private void lbCombatants_Validating(object sender, CancelEventArgs e)
+        {
+            if (lbCombatants.SelectedIndex == -1)
+            {
+                epCombatTracker.SetError(lbCombatants, "Please select a Combatant");
+                e.Cancel = true;
+            }
+            else
+            {
+                epCombatTracker.SetError(lbCombatants, null);
+                e.Cancel = false;
+            }
+        }
+
+        private void lbWeapons_Validating(object sender, CancelEventArgs e)
+        {
+            if (lbWeapons.SelectedIndex == -1)
+            {
+                epCombatTracker.SetError(lbWeapons, "Please select a Weapon");
+                e.Cancel = true;
+            }
+            else
+            {
+                epCombatTracker.SetError(lbWeapons, null);
+                e.Cancel = false;
+            }
+        }
     }
 }

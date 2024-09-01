@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbCombatants = new System.Windows.Forms.ListBox();
             this.btnRollInitiative = new System.Windows.Forms.Button();
             this.btnAddCombatant = new System.Windows.Forms.Button();
@@ -101,11 +102,13 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnMakeAnAttack = new System.Windows.Forms.Button();
             this.btnRemoveWeapon = new System.Windows.Forms.Button();
+            this.epCombatTracker = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbDisplayCombatant.SuspendLayout();
             this.gbSavingThrows.SuspendLayout();
             this.gbSpeed.SuspendLayout();
             this.gbStats.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epCombatTracker)).BeginInit();
             this.SuspendLayout();
             // 
             // lbCombatants
@@ -119,6 +122,7 @@
             this.lbCombatants.Size = new System.Drawing.Size(236, 484);
             this.lbCombatants.TabIndex = 0;
             this.lbCombatants.SelectedIndexChanged += new System.EventHandler(this.lbCombatants_SelectedIndexChanged);
+            this.lbCombatants.Validating += new System.ComponentModel.CancelEventHandler(this.lbCombatants_Validating);
             // 
             // btnRollInitiative
             // 
@@ -204,6 +208,7 @@
             this.lbWeapons.Name = "lbWeapons";
             this.lbWeapons.Size = new System.Drawing.Size(324, 277);
             this.lbWeapons.TabIndex = 41;
+            this.lbWeapons.Validating += new System.ComponentModel.CancelEventHandler(this.lbWeapons_Validating);
             // 
             // btnSetHP
             // 
@@ -860,6 +865,10 @@
             this.btnRemoveWeapon.UseVisualStyleBackColor = true;
             this.btnRemoveWeapon.Click += new System.EventHandler(this.btnRemoveWeapon_Click);
             // 
+            // epCombatTracker
+            // 
+            this.epCombatTracker.ContainerControl = this;
+            // 
             // CombatTracker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -886,6 +895,7 @@
             this.gbStats.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epCombatTracker)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -966,6 +976,7 @@
         private System.Windows.Forms.Button btnAddWeapon;
         private System.Windows.Forms.Button btnMakeAnAttack;
         private System.Windows.Forms.Button btnRemoveWeapon;
+        private System.Windows.Forms.ErrorProvider epCombatTracker;
     }
 }
 
