@@ -110,9 +110,9 @@
             // 
             // lbCombatants
             // 
-            this.lbCombatants.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCombatants.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCombatants.FormattingEnabled = true;
-            this.lbCombatants.ItemHeight = 20;
+            this.lbCombatants.ItemHeight = 16;
             this.lbCombatants.Location = new System.Drawing.Point(12, 27);
             this.lbCombatants.Name = "lbCombatants";
             this.lbCombatants.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -202,7 +202,6 @@
             this.lbWeapons.FormattingEnabled = true;
             this.lbWeapons.Location = new System.Drawing.Point(883, 79);
             this.lbWeapons.Name = "lbWeapons";
-            this.lbWeapons.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbWeapons.Size = new System.Drawing.Size(324, 277);
             this.lbWeapons.TabIndex = 41;
             // 
@@ -849,6 +848,7 @@
             this.btnMakeAnAttack.TabIndex = 8;
             this.btnMakeAnAttack.Text = "Make an attack";
             this.btnMakeAnAttack.UseVisualStyleBackColor = true;
+            this.btnMakeAnAttack.Click += new System.EventHandler(this.btnMakeAnAttack_Click);
             // 
             // btnRemoveWeapon
             // 

@@ -264,7 +264,17 @@ namespace Dungeons_and_Dragons_DM_Helper
             AddWeapon addWeapon = new AddWeapon();
             if (addWeapon.ShowDialog() == DialogResult.OK)
             {
-                combatant.weapons.Add(addWeapon.weapon);
+                Weapon weapon = addWeapon.weapon;
+                switch (weapon.weaponType)
+                {
+                    case "Strength":
+                        weapon.statModifier = combatant.modifierCalc(combatant.stats[0]);
+                        break;
+                    case "Dexterity":
+                        weapon.statModifier = combatant.modifierCalc(combatant.stats[1]);
+                        break;
+                }
+                combatant.weapons.Add(weapon);
                 lbCombatants.Items[lbCombatants.SelectedIndex] = combatant;
                 updateDisplay();
             }
@@ -283,5 +293,20 @@ namespace Dungeons_and_Dragons_DM_Helper
                 }
             }
         }
+
+        private void btnMakeAnAttack_Click(object sender, EventArgs e)
+        {
+            List<Combatant> combatants = getListOfEveryCombatant();
+            Combatant selectedCombatant = lbCombatants.SelectedItem as Combatant;
+            Weapon selectedWeapon = lbWeapons.SelectedItem as Weapon;
+
+            combatants.RemoveAt(lbCombatants.SelectedIndex);
+            MakeAnAttack makeAnAttack = new MakeAnAttack(combatants, selectedCombatant, selectedWeapon);
+
+            if(makeAnAttack.ShowDialog() == DialogResult.Yes)
+            {
+                
+            }
+        }     
     }
 }

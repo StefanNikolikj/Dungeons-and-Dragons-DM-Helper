@@ -66,6 +66,12 @@
     <Compile Include="CombatTracker.Designer.cs">
       <DependentUpon>CombatTracker.cs</DependentUpon>
     </Compile>
+    <Compile Include="MakeAnAttack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MakeAnAttack.Designer.cs">
+      <DependentUpon>MakeAnAttack.cs</DependentUpon>
+    </Compile>
     <Compile Include="SavingThrow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CombatTracker.resx">
       <DependentUpon>CombatTracker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MakeAnAttack.resx">
+      <DependentUpon>MakeAnAttack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SavingThrow.resx">
       <DependentUpon>SavingThrow.cs</DependentUpon>

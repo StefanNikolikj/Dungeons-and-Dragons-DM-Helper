@@ -46,6 +46,7 @@ namespace Dungeons_and_Dragons_DM_Helper
         public List<Weapon> weapons { get; set; }
 
         public int initiative { get; set; }
+        
         public Combatant()
         {
 
@@ -81,7 +82,7 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         public int modifierCalc(int stat)
         {
-            int modifier = (int)Math.Floor(((double)stat / 2) - 5);
+            int modifier = ((stat / 2) - 5);
             return modifier;
         }
         private int calculatePassivePerception()
@@ -158,6 +159,12 @@ namespace Dungeons_and_Dragons_DM_Helper
         public bool isVulnerable(string damageType)
         {
             return damageVulnerabilities.Contains(damageType);
+        }
+        public void dealDamage(int damage)
+        {
+            this.currentHP -= damage;
+            if (currentHP < 0)
+                this.currentHP = 0;
         }
     }
 }

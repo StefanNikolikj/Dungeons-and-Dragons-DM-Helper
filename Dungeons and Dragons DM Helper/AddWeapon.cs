@@ -12,14 +12,12 @@ namespace Dungeons_and_Dragons_DM_Helper
 {
     public partial class AddWeapon : Form
     {
-        //public Dictionary<string, string> diceMap {  get; set; } // k - damageType v - damageDice
         List<string> diceList { get; set; }
         string currentDamageDice;
         public Weapon weapon { get; set; }
         public AddWeapon()
         {
             InitializeComponent();
-            //diceMap = new Dictionary<string, string>();
             diceList = new List<string>();
         }
 
@@ -82,7 +80,7 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         private void btnAddWeapom_Click(object sender, EventArgs e)
         {
-            weapon = new Weapon(tbName.Text, diceList, Convert.ToInt32(numDamageModifier.Value), ddWeaponType.SelectedItem.ToString());
+            weapon = new Weapon(tbName.Text, diceList, Convert.ToInt32(numDamageModifier.Value), ddWeaponType.Text);
             this.DialogResult = DialogResult.OK;
         }
     }

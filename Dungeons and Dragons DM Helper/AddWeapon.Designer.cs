@@ -305,9 +305,19 @@
             0,
             0,
             0});
+            this.numNumberOfDice.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numNumberOfDice.Name = "numNumberOfDice";
             this.numNumberOfDice.Size = new System.Drawing.Size(121, 22);
             this.numNumberOfDice.TabIndex = 32;
+            this.numNumberOfDice.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label1
             // 
@@ -348,7 +358,7 @@
             this.Controls.Add(this.tbRollTotal);
             this.Controls.Add(this.gbAddDice);
             this.Name = "AddWeapon";
-            this.Text = "AddWeapon";
+            this.Text = "Add a Weapon/Attack";
             this.gbAddDice.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numDamageModifier)).EndInit();
             this.gbRollDamage.ResumeLayout(false);

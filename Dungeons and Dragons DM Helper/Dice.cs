@@ -12,15 +12,15 @@ namespace Dungeons_and_Dragons_DM_Helper
 
         public static int rollDice(int sides)
         {
-            return RANDOM.Next(1,sides);
+            return RANDOM.Next(1,sides + 1);
         }
         public static int rollWithAdvantage(int sides)
         {
-            return Math.Max(RANDOM.Next(1, sides), RANDOM.Next(1, sides));
+            return Math.Max(RANDOM.Next(1, sides + 1), RANDOM.Next(1, sides + 1));
         }
         public static int rollWithDisadvantage(int sides)
         {
-            return Math.Min(RANDOM.Next(1, sides), RANDOM.Next(1, sides));
+            return Math.Min(RANDOM.Next(1, sides + 1), RANDOM.Next(1, sides + 1));
         }
     }
 }
