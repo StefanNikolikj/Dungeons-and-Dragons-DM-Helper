@@ -12,7 +12,7 @@ namespace Dungeons_and_Dragons_DM_Helper
 {
     public partial class MakeAnAttack : Form
     {
-        public int damageToCombatant {  get; set; }
+        public int damageToCombatant { get; set; }
         Combatant attackingCombatant { get; set; }
         public Combatant defendingCombatant { get; set; }
         Weapon selectedWeapon { get; set; }
@@ -71,22 +71,24 @@ namespace Dungeons_and_Dragons_DM_Helper
 
                 if (attackRoll == 20)
                 {
-                    damage = selectedWeapon.rollCriticalDamage();
+                    damage = getTotalDamage(selectedWeapon.rollCriticalDamage());
                     sb.Append($" CRITICAL HIT!\nDamage: {damage}");
                 }
                 else if (attackRoll + getModifiers() > defendingCombatant.AC)
                 {
-                    damage = selectedWeapon.rollDamage();
+                    damage = getTotalDamage(selectedWeapon.rollDamage());
                     sb.Append($" HIT!\nDamage: {damage}");
                 }
                 else if (attackRoll + getModifiers() == defendingCombatant.AC)
                 {
-                    damage = selectedWeapon.rollDamage() / 2;
+                    damage = getTotalDamage(selectedWeapon.rollDamage()) / 2;
                     sb.Append($" GLANCING!\nDamage: {damage}");
                 }
                 else sb.Append("MISS!");
+
+
                 sb.Append("\n");
-                defendingCombatant.dealDamage( damage );
+                defendingCombatant.dealDamage(damage);
             }
 
             rtbRollResults.Text += sb.ToString();
@@ -115,6 +117,20 @@ namespace Dungeons_and_Dragons_DM_Helper
                 e.Cancel = false;
             }
         }
+        private int getTotalDamage(Dictionary<string, int> damagePerAttacktype)
+        {
+            int totalDamage = 0;
+            foreach (string key in damagePerAttacktype.Keys)
+            {
+                if (defendingCombatant.isResistant(key))
+                    totalDamage += damagePerAttacktype[key] / 2;
+                else if (defendingCombatant.isImmune(key))
+                    totalDamage += 0;
+                else if (defendingCombatant.isVulnerable(key))
+                    totalDamage += damagePerAttacktype[key] * 2;
+                else totalDamage += damagePerAttacktype[key];
+            }
+            return totalDamage;
+        }
     }
- 
 }

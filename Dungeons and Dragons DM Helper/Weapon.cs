@@ -17,6 +17,7 @@ namespace Dungeons_and_Dragons_DM_Helper
         
         public string weaponType { get; set; } // can only be str or dex
         public int statModifier { get; set; }
+        //public Dictionary<string, int> damagePerAttackType; // k - Damage type, v - damage
 
         public Weapon()
         {
@@ -30,34 +31,44 @@ namespace Dungeons_and_Dragons_DM_Helper
             this.damageModifier = damageModifier;
             this.weaponType = weaponType;
             this.statModifier = 0;
+            //damagePerAttackType = new Dictionary<string, int>();
         }
-        public int rollDamage()
+        public Dictionary<string, int> rollDamage()
         {
-            int totalDamage = 0;
+            Dictionary<string, int> damagePerAttackType = new Dictionary<string, int>();
+            int damage = 0;
             foreach (string dice in this.damageDice)
             {
                 string[] temp = dice.Split(' ');
                 string[] arr = temp[0].Split('d');
                 for (int i = 0; i < Convert.ToInt32(arr[0]); i++)
                 {
-                    totalDamage += Dice.rollDice(Convert.ToInt32(arr[1]));
+                    damage += Dice.rollDice(Convert.ToInt32(arr[1]));
                 }
+                if (damagePerAttackType.ContainsKey(temp[1]))
+                    damagePerAttackType[temp[1]] += damage;
+                else damagePerAttackType.Add(temp[1], damage);
             }
-            return totalDamage + damageModifier + statModifier;
+            return damagePerAttackType;
         }
-        public int rollCriticalDamage()
+        public Dictionary<string, int> rollCriticalDamage()
         {
-            int totalDamage = 0;
+            Dictionary<string, int> damagePerAttackType = new Dictionary<string, int>();
+            int damage = 0;
             foreach (string dice in this.damageDice)
             {
                 string[] temp = dice.Split(' ');
                 string[] arr = temp[0].Split('d');
                 for (int i = 0; i < 2*Convert.ToInt32(arr[0]); i++)
                 {
-                    totalDamage += Dice.rollDice(Convert.ToInt32(arr[1]));
+                    damage += Dice.rollDice(Convert.ToInt32(arr[1]));
                 }
+
+                if (damagePerAttackType.ContainsKey(temp[1]))
+                    damagePerAttackType[temp[1]] += damage;
+                else damagePerAttackType.Add(temp[1], damage);
             }
-            return totalDamage + damageModifier + statModifier;
+            return damagePerAttackType;
         }
         public override string ToString()
         {
