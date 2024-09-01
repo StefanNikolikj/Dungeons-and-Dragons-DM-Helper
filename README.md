@@ -19,6 +19,6 @@ This form is used to create a new attack for a character. The name was chosen be
 - MakeAnAttack.cs
 This form will open when a creature is making an attack, from here the user has options to make multiple attacks if the character would have that option.
 - SavingThrow.cs
- This form will open when the user needs to roll a saving throw, saving throws can have one or multiple targets in which case all targets will roll individually.
+ This form will open when the user needs to roll a saving throw, saving throws can have one or multiple targets in which case all targets will roll individually. If damage is included in the saving throw, the dice for the attack roll should be included in the format [number of dice rolled]d[sides of the dice] (for example 3d6 for 3 6 sided dice).
  - DiceRoller.cs
   This is a form that would allow the user to generate a random number instead of rolling a die, this was purely added for convenience and has no effect on anything else in the active combat.
