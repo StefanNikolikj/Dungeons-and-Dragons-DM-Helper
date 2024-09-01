@@ -120,6 +120,9 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnManualInitiative = new System.Windows.Forms.Button();
             this.btnRemoveCombatant = new System.Windows.Forms.Button();
+            this.tbPassivePerception = new System.Windows.Forms.TextBox();
+            this.lblPassivePerception = new System.Windows.Forms.Label();
+            this.btnSetHP = new System.Windows.Forms.Button();
             this.gbDisplayCombatant.SuspendLayout();
             this.gbSavingThrows.SuspendLayout();
             this.gbSpeed.SuspendLayout();
@@ -129,11 +132,13 @@
             // 
             // lbCombatants
             // 
+            this.lbCombatants.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCombatants.FormattingEnabled = true;
+            this.lbCombatants.ItemHeight = 20;
             this.lbCombatants.Location = new System.Drawing.Point(12, 27);
             this.lbCombatants.Name = "lbCombatants";
             this.lbCombatants.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lbCombatants.Size = new System.Drawing.Size(236, 498);
+            this.lbCombatants.Size = new System.Drawing.Size(236, 484);
             this.lbCombatants.TabIndex = 0;
             this.lbCombatants.SelectedIndexChanged += new System.EventHandler(this.lbCombatants_SelectedIndexChanged);
             // 
@@ -159,6 +164,9 @@
             // 
             // gbDisplayCombatant
             // 
+            this.gbDisplayCombatant.Controls.Add(this.btnSetHP);
+            this.gbDisplayCombatant.Controls.Add(this.tbPassivePerception);
+            this.gbDisplayCombatant.Controls.Add(this.lblPassivePerception);
             this.gbDisplayCombatant.Controls.Add(this.tbVulnerabilities);
             this.gbDisplayCombatant.Controls.Add(this.tbImmunities);
             this.gbDisplayCombatant.Controls.Add(this.tbResistances);
@@ -181,7 +189,7 @@
             this.gbDisplayCombatant.Controls.Add(this.lblName);
             this.gbDisplayCombatant.Location = new System.Drawing.Point(449, 27);
             this.gbDisplayCombatant.Name = "gbDisplayCombatant";
-            this.gbDisplayCombatant.Size = new System.Drawing.Size(832, 560);
+            this.gbDisplayCombatant.Size = new System.Drawing.Size(1157, 560);
             this.gbDisplayCombatant.TabIndex = 3;
             this.gbDisplayCombatant.TabStop = false;
             this.gbDisplayCombatant.Text = "Display Combatant";
@@ -254,7 +262,7 @@
             // 
             // pbCurrentHP
             // 
-            this.pbCurrentHP.Location = new System.Drawing.Point(530, 91);
+            this.pbCurrentHP.Location = new System.Drawing.Point(535, 86);
             this.pbCurrentHP.Name = "pbCurrentHP";
             this.pbCurrentHP.Size = new System.Drawing.Size(283, 23);
             this.pbCurrentHP.TabIndex = 30;
@@ -272,7 +280,7 @@
             // tbAC
             // 
             this.tbAC.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbAC.Location = new System.Drawing.Point(414, 70);
+            this.tbAC.Location = new System.Drawing.Point(428, 57);
             this.tbAC.Name = "tbAC";
             this.tbAC.ReadOnly = true;
             this.tbAC.Size = new System.Drawing.Size(46, 29);
@@ -281,7 +289,7 @@
             // tbTotalHP
             // 
             this.tbTotalHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTotalHP.Location = new System.Drawing.Point(291, 70);
+            this.tbTotalHP.Location = new System.Drawing.Point(320, 57);
             this.tbTotalHP.Name = "tbTotalHP";
             this.tbTotalHP.ReadOnly = true;
             this.tbTotalHP.Size = new System.Drawing.Size(47, 29);
@@ -291,7 +299,7 @@
             // 
             this.lblAC.AutoSize = true;
             this.lblAC.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAC.Location = new System.Drawing.Point(417, 42);
+            this.lblAC.Location = new System.Drawing.Point(431, 29);
             this.lblAC.Name = "lblAC";
             this.lblAC.Size = new System.Drawing.Size(43, 25);
             this.lblAC.TabIndex = 26;
@@ -301,7 +309,7 @@
             // 
             this.lblTotalHP.AutoSize = true;
             this.lblTotalHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalHP.Location = new System.Drawing.Point(269, 42);
+            this.lblTotalHP.Location = new System.Drawing.Point(298, 29);
             this.lblTotalHP.Name = "lblTotalHP";
             this.lblTotalHP.Size = new System.Drawing.Size(103, 25);
             this.lblTotalHP.TabIndex = 25;
@@ -310,7 +318,7 @@
             // tbProficiency
             // 
             this.tbProficiency.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbProficiency.Location = new System.Drawing.Point(85, 102);
+            this.tbProficiency.Location = new System.Drawing.Point(21, 98);
             this.tbProficiency.Name = "tbProficiency";
             this.tbProficiency.ReadOnly = true;
             this.tbProficiency.Size = new System.Drawing.Size(82, 26);
@@ -455,7 +463,7 @@
             // 
             this.lblProficiency.AutoSize = true;
             this.lblProficiency.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProficiency.Location = new System.Drawing.Point(66, 80);
+            this.lblProficiency.Location = new System.Drawing.Point(17, 79);
             this.lblProficiency.Name = "lblProficiency";
             this.lblProficiency.Size = new System.Drawing.Size(131, 16);
             this.lblProficiency.TabIndex = 19;
@@ -748,7 +756,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1618, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1624, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -994,11 +1002,40 @@
             this.btnRemoveCombatant.UseVisualStyleBackColor = true;
             this.btnRemoveCombatant.Click += new System.EventHandler(this.btnRemoveCombatant_Click);
             // 
+            // tbPassivePerception
+            // 
+            this.tbPassivePerception.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPassivePerception.Location = new System.Drawing.Point(157, 98);
+            this.tbPassivePerception.Name = "tbPassivePerception";
+            this.tbPassivePerception.ReadOnly = true;
+            this.tbPassivePerception.Size = new System.Drawing.Size(82, 26);
+            this.tbPassivePerception.TabIndex = 39;
+            // 
+            // lblPassivePerception
+            // 
+            this.lblPassivePerception.AutoSize = true;
+            this.lblPassivePerception.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassivePerception.Location = new System.Drawing.Point(154, 79);
+            this.lblPassivePerception.Name = "lblPassivePerception";
+            this.lblPassivePerception.Size = new System.Drawing.Size(142, 16);
+            this.lblPassivePerception.TabIndex = 38;
+            this.lblPassivePerception.Text = "Passive Perception";
+            // 
+            // btnSetHP
+            // 
+            this.btnSetHP.Location = new System.Drawing.Point(641, 115);
+            this.btnSetHP.Name = "btnSetHP";
+            this.btnSetHP.Size = new System.Drawing.Size(75, 23);
+            this.btnSetHP.TabIndex = 40;
+            this.btnSetHP.Text = "Set HP";
+            this.btnSetHP.UseVisualStyleBackColor = true;
+            this.btnSetHP.Click += new System.EventHandler(this.btnSetHP_Click);
+            // 
             // CombatTracker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1618, 599);
+            this.ClientSize = new System.Drawing.Size(1624, 599);
             this.Controls.Add(this.btnRemoveCombatant);
             this.Controls.Add(this.btnRollSavingThrows);
             this.Controls.Add(this.btnManualInitiative);
@@ -1118,6 +1155,9 @@
         private System.Windows.Forms.TextBox tbVulnerabilities;
         private System.Windows.Forms.TextBox tbImmunities;
         private System.Windows.Forms.Button btnRemoveCombatant;
+        private System.Windows.Forms.TextBox tbPassivePerception;
+        private System.Windows.Forms.Label lblPassivePerception;
+        private System.Windows.Forms.Button btnSetHP;
     }
 }
 

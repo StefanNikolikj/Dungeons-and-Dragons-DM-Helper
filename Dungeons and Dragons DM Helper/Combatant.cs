@@ -36,15 +36,15 @@ namespace Dungeons_and_Dragons_DM_Helper
         public int passivePerception {  get; set; }
         public int passiveInsight {  get; set; } // homebrew shit for Stefan
 
-        public List<string> savingThrows { get; set; }
-        public List<string> damageResistances { get; set; }
-        public List<string> damageImmunities { get; set; }
-        public List<string> damageVulnerabilities { get; set; }
-        public List<string> conditionImmunities { get; set; }
+        public HashSet<string> savingThrows { get; set; }
+        public HashSet<string> damageResistances { get; set; }
+        public HashSet<string> damageImmunities { get; set; }
+        public HashSet<string> damageVulnerabilities { get; set; }
+        public HashSet<string> conditionImmunities { get; set; }
 
         public int initiative { get; set; }
 
-        public Combatant(string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int hp, int ac, int proficiency,List<string> damageResistances, List<string> damageImmunities, List<string> damageVulnerabilities,List<string> savingThrows, int movementSpeed, int burrowSpeed, int swimSpeed, int flightSpeed, int climbingSpeed)
+        public Combatant(string name, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int hp, int ac, int proficiency,HashSet<string> damageResistances, HashSet<string> damageImmunities, HashSet<string> damageVulnerabilities,HashSet<string> savingThrows, int movementSpeed, int burrowSpeed, int swimSpeed, int flightSpeed, int climbingSpeed)
         {
             this.name = name;
             this.stats = new List<int>();
@@ -138,6 +138,18 @@ namespace Dungeons_and_Dragons_DM_Helper
                     total += proficiency;
             }
             return total;
+        }
+        public bool isResistant(string damageType)
+        {
+            return damageResistances.Contains(damageType);
+        }
+        public bool isImmune(string damageType)
+        {
+            return damageImmunities.Contains(damageType);
+        }
+        public bool isVulnerable(string damageType)
+        {
+            return damageVulnerabilities.Contains(damageType);
         }
     }
 }

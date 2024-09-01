@@ -17,13 +17,6 @@ namespace Dungeons_and_Dragons_DM_Helper
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Dice_Roller dice_Roller = new Dice_Roller();
-
-            dice_Roller.Show();
-        }
-
         private void lbCombatants_SelectedIndexChanged(object sender, EventArgs e)
         {
             updateDisplay();
@@ -116,6 +109,7 @@ namespace Dungeons_and_Dragons_DM_Helper
 
                 tbName.Text = combatant.name;
                 tbProficiency.Text = $"+{combatant.proficiency}";
+                tbPassivePerception.Text = combatant.passivePerception.ToString();
                 tbTotalHP.Text = combatant.maxHP.ToString();
                 tbAC.Text = combatant.AC.ToString();
 
@@ -155,23 +149,26 @@ namespace Dungeons_and_Dragons_DM_Helper
             return combatant.getSavingThrowModifier(stat);
         }
 
-        private string toTextBox(List<string> list)
+        private string toTextBox(HashSet<string> set)
         {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < list.Count; i++)
-            {
-                sb.Append($"{list[i]}, ");
-            }
-            return sb.ToString().Substring(0,sb.ToString().Length-2);
+            if (set.Count != 0)
+                return string.Join(", ", set);
+            else return "None";
         }
 
         private void btnRollSavingThrows_Click(object sender, EventArgs e)
         {
-            SavingThrow savingThrow = new SavingThrow(getListOfSelectedCombatants());
+            List<Combatant> listOfSelectedCombatants = getListOfSelectedCombatants();
+            
+            SavingThrow savingThrow = new SavingThrow(listOfSelectedCombatants);
 
             if (savingThrow.ShowDialog() == DialogResult.OK)
             {
-
+                for (int i = 0; i < lbCombatants.SelectedIndices.Count; i++)
+                {
+                    lbCombatants.Items[lbCombatants.SelectedIndices[i]] = savingThrow.combatants[i];
+                }
+                updateDisplay();
             }
         }
         private string getSign(int modifier)
@@ -180,6 +177,19 @@ namespace Dungeons_and_Dragons_DM_Helper
             if (modifier >= 0)
                 sign = "+";
             return sign;
+        }
+
+        private void btnSetHP_Click(object sender, EventArgs e)
+        {
+            Combatant combatant = lbCombatants.SelectedItem as Combatant; 
+            SetHP setHP = new SetHP(combatant.currentHP,combatant.maxHP);
+
+            if (setHP.ShowDialog() == DialogResult.OK)
+            {
+                combatant.currentHP = setHP.hp;
+                lbCombatants.Items[lbCombatants.SelectedIndex] = combatant;
+                updateDisplay();
+            }
         }
     }
 }
