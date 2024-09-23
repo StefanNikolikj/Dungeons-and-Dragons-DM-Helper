@@ -10,6 +10,7 @@ Some spells may effect multiple characters, spells that have an area of effect u
 ## Explanation for the forms
 - CombatTracker.cs
 This is the base form for the application, from here the user can keep track of the initiative order (list on the left) and individual character (on the right). Each individual character is an object of the Combatant class. There is an option to add new characters to the combat or remove certain characters, as well as an option to make an attack or make multiple characters roll a saving throw.
+
 ![image](https://github.com/user-attachments/assets/36b46251-4dce-4252-b548-fc398c71cf0c)
 - The initiative list: is the list to the left of the form. This list displays all of the current characters that are a part of this combat. From here any character can be selected for their statistics and actions to be shown on the right of the form, additionally multiple characters can be selected for actions that would effect more than one character.
 - Roll Initiatives of Selected Combatants: Randomly assigns the initiatives of the selected characters, this process works with a function that returns a randomly generated number after adding the bonuses for each individual combatant accordingly.
@@ -35,6 +36,7 @@ This is the base form for the application, from here the user can keep track of 
 #
 - NewCombatant.cs
 Whenever a new character is being created, this form will open which will allow the user to input all of the necessary statistics for the character.
+
 ![image](https://github.com/user-attachments/assets/3fe7d7e2-e620-4b05-9d6e-1b69cc7cfdca)
 - Stats: in this sector the user can input the statistics of the character, from which the modifiers for their bonuses will be determined.
 - HP and AC: in this sector the user can input the maximum hp and the AC of the character.
@@ -49,6 +51,7 @@ Both of these are simple forms used to set a custom number of hit points or init
 #
 - AddWeapon.cs
 This form is used to create a new attack for a character. The name was chosen because in the official statics for NPCs, their attacks are usually marked by the name of the weapon.
+
 ![image](https://github.com/user-attachments/assets/1759fdaa-4afb-47f6-9a05-b816b824d236)
 - Damage Modifier: optional additional modifier that is added to both the attack and the damage. Regardless of this field the attack will have determined modifiers coming from either strenght or dexterity.
 - Weapon Type: in this field the user can select which statistic the character uses for this attack.
@@ -56,6 +59,7 @@ This form is used to create a new attack for a character. The name was chosen be
 #
 - MakeAnAttack.cs
 This form will open when a creature is making an attack, from here the user has options to make multiple attacks if the character would have that option.
+
 ![image](https://github.com/user-attachments/assets/f8ffe064-5d78-4e41-ae87-0dd3aed56f6f)
 - Choose who to Attack and Enter the number of attacks: in these two the user can select both towards which character the attacks are aimed at as well as the number of attacks towards that character.
 - Advantage and Disadvantage: These can be individually selected when applicable. Advantage on rolls means that the die is rolled twice and the greater number is taken. Disadvantage on rolls means that the die is rolled twice and the lower number is taken.
@@ -63,6 +67,7 @@ This form will open when a creature is making an attack, from here the user has 
 #
 - SavingThrow.cs
  This form will open when the user needs to roll a saving throw, saving throws can have one or multiple targets in which case all targets will roll individually. If damage is included in the saving throw, the dice for the attack roll should be included in the format [number of dice rolled]d[sides of the dice] (for example 3d6 for 3 6 sided dice).
+
 ![image](https://github.com/user-attachments/assets/2201ad4a-f6f1-45a5-8827-cf972cf69186)
 - Choose the type of Saving Throw: allows you to choose what type of the saving throw the previously selected characters will roll.
 - Enter Save DC: is where the user can input the Difficulty Class of the saving throw. The selected characters will then have to roll and if the roll with modifiers is lower than the DC the characters will be effected.
