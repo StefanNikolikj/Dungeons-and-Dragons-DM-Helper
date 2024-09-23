@@ -71,5 +71,7 @@ This form will open when a creature is making an attack, from here the user has 
 ![image](https://github.com/user-attachments/assets/2201ad4a-f6f1-45a5-8827-cf972cf69186)
 - Choose the type of Saving Throw: allows you to choose what type of the saving throw the previously selected characters will roll.
 - Enter Save DC: is where the user can input the Difficulty Class of the saving throw. The selected characters will then have to roll and if the roll with modifiers is lower than the DC the characters will be effected.
-- Roll Damage: this sector can be activated by choosing to roll for damage as well. If this sector is activated it will be assumed that the rules follow the standard rules for the majority of saving throw against damage. Most saving throws that are made against damage which succeed only half the damage instead of fully negating it. If the saving throw is a failure than the damage will be dealth fully.
+- Roll Damage: this sector can be activated by choosing to roll for damage as well.
+- Enter the Dice to be rolled: in this field the user can input the damage of the effect the characters are rolling to save against. The damage is inputted in the format [number of dice]d[sides of dice] for example 8d6.
+- Does the attack deal half damage when saved: some effects may deal half damage even when saved. If this is not checked then the characters that succeeded on the roll will not take any damage.
 #
