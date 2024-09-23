@@ -35,13 +35,35 @@ This is the base form for the application, from here the user can keep track of 
 #
 - NewCombatant.cs
 Whenever a new character is being created, this form will open which will allow the user to input all of the necessary statistics for the character.
+![image](https://github.com/user-attachments/assets/3fe7d7e2-e620-4b05-9d6e-1b69cc7cfdca)
+- Stats: in this sector the user can input the statistics of the character, from which the modifiers for their bonuses will be determined.
+- HP and AC: in this sector the user can input the maximum hp and the AC of the character.
+- Proficiencies: in this sector the user can input the proficiency bonus of the character, as well as select which saving throw the character is proficient in.
+- Resistances, Immunities and Vulnerabilities: in this sector the user can input the resistances, immunities and vulnerabilities of the character.
+- Speeds: in this sector the user can input the movement speeds of the character.
+#
 - SetHP.cs and SetInitiative.cs
 Both of these are simple forms used to set a custom number of hit points or initiative value to any character by the user if needed.
+![image](https://github.com/user-attachments/assets/fecdb54a-9bd3-4906-835b-4691762cf368)
+#
 - AddWeapon.cs
 This form is used to create a new attack for a character. The name was chosen because in the official statics for NPCs, their attacks are usually marked by the name of the weapon.
+![image](https://github.com/user-attachments/assets/1759fdaa-4afb-47f6-9a05-b816b824d236)
+- Damage Modifier: optional additional modifier that is added to both the attack and the damage. Regardless of this field the attack will have determined modifiers coming from either strenght or dexterity.
+- Weapon Type: in this field the user can select which statistic the character uses for this attack.
+- Damage Dice: in this field the user can select which type of dice the weapon uses for damage, how many of them and which type of damage the attack does. Each attack can have multiple types of damage, and the damage is written in the format of [number of dice]d[sides of die] [type of damage], with a + between the different types of damage (for example: 2d6 slashing + 2d4 poison damage).
+#
 - MakeAnAttack.cs
 This form will open when a creature is making an attack, from here the user has options to make multiple attacks if the character would have that option.
+![image](https://github.com/user-attachments/assets/f8ffe064-5d78-4e41-ae87-0dd3aed56f6f)
+- Choose who to Attack and Enter the number of attacks: in these two the user can select both towards which character the attacks are aimed at as well as the number of attacks towards that character.
+- Advantage and Disadvantage: These can be individually selected when applicable. Advantage on rolls means that the die is rolled twice and the greater number is taken. Disadvantage on rolls means that the die is rolled twice and the lower number is taken.
+- Attack Roll: in this sector the user will be able to see the outcome of the attacks done, whether they hit or not and the damage they dealt. If the attacks hits the damage is automatically done to the target.
+#
 - SavingThrow.cs
  This form will open when the user needs to roll a saving throw, saving throws can have one or multiple targets in which case all targets will roll individually. If damage is included in the saving throw, the dice for the attack roll should be included in the format [number of dice rolled]d[sides of the dice] (for example 3d6 for 3 6 sided dice).
- - DiceRoller.cs
-  This is a form that would allow the user to generate a random number instead of rolling a die, this was purely added for convenience and has no effect on anything else in the active combat.
+![image](https://github.com/user-attachments/assets/2201ad4a-f6f1-45a5-8827-cf972cf69186)
+- Choose the type of Saving Throw: allows you to choose what type of the saving throw the previously selected characters will roll.
+- Enter Save DC: is where the user can input the Difficulty Class of the saving throw. The selected characters will then have to roll and if the roll with modifiers is lower than the DC the characters will be effected.
+- Roll Damage: this sector can be activated by choosing to roll for damage as well. If this sector is activated it will be assumed that the rules follow the standard rules for the majority of saving throw against damage. Most saving throws that are made against damage which succeed only half the damage instead of fully negating it. If the saving throw is a failure than the damage will be dealth fully.
+#
