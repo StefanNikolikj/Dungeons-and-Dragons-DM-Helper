@@ -4,16 +4,122 @@ This application is made to aid a Dungeon Master hosting a game from the 5th edi
 ## Explanation of the rules for the game
 This paragraph will explain the basics of the game covered in the application to clarify the features of the application.
 DnD has a turn based combat system which involves each character that takes part in the combat. Each character has a randomized initiative which is calculated during the game with a roll of a 20 sided die, and the addition of bonuses taken from each character's statistics.
-During their turn in combat, each character has their own actions to choose from and can move on the map up to their movement speed. Each character has their own actions to choose from, but most commonly the action is used for some form of an attack or casting some spell. If the character decides to make a weapon attack, they have to roll a 20 sided dice and add the bonuses they get to the attack roll, if the attack roll is a number higher than the AC (Armor Class) of the target, the attack is successful and the character has to roll for the damage (the dice vary depending on which weapon the attacker is using) and add their bonuses to the damage. The movement speed of the specific character is included in the statistics for the character.
+During their turn in combat, each character has their own actions to choose from and can move on the map up to their movement speed. There are various speeds depending on the type of movement the character does (for example if the character can fly then they have a flying speed i.e its not 0 ft.) Each character has their own actions to choose from, but most commonly the action is used for some form of an attack or casting some spell. If the character decides to make a weapon attack, they have to roll a 20 sided dice and add the bonuses they get to the attack roll, if the attack roll is a number higher than the AC (Armor Class) of the target, the attack is successful and the character has to roll for the damage (the dice vary depending on which weapon the attacker is using) and add their bonuses to the damage. The movement speed of the specific character is included in the statistics for the character.
 Some spells may effect multiple characters, spells that have an area of effect usually have a specific saving throw. Saving throws are rolled by each individual target of the effect (20 sided die plus bonuses) and if the roll is greater than the DC in the description of the spell they succeed, otherwise they fail. For all instances of the game calling for a saving throw, there is always a description regarding what happens both to those who succeed and those who fail the saving throw.
+## Explanation for the classes
+- Dice.cs
+  - This is a static class that only contains methods for rolling an n-sided die. 
+  - The class only contains one private parameter `RANDOM` which is an object from the Random() class
+  - The class contains 3 methods:
+    - **rollDice(int sides): int**
+	     - Static method for rolling a single die, it returns an integer from `1 to sides + 1` using the `RANDOM.Next()` method 
+    - **rollDiceWithAdvantage(int sides): int**
+	     - In DnD rolling with with advantage means that you roll 2 dice and you take the higher roll of the two.
+	     - This static method returns the max result between two rolls.
+    - **rollDiceWithDisadvantage(int sides): int**
+	     - Simmilar to advantage, rolling with disadvantage in DnD means that you roll 2 dice, however this time you take the lower roll.
+	     - This static method returns the min result between two rolls.
+
+```c#
+public static int rollDice(int sides)
+{
+    return RANDOM.Next(1,sides + 1);
+}
+public static int rollWithAdvantage(int sides)
+{
+    return Math.Max(RANDOM.Next(1, sides + 1), RANDOM.Next(1, sides + 1));
+}
+public static int rollWithDisadvantage(int sides)
+{
+    return Math.Min(RANDOM.Next(1, sides + 1), RANDOM.Next(1, sides + 1));
+}
+```
+- Combatant.cs
+  - This is the class for the characters involved in the combat
+  - As parameters, the class keeps:
+      - The name of the combatant;
+      - A list containing the values of each of their stats ((index of elements and their meanings) 0 - strength, 1 - dexterity, 2 - constitution, 3 - inteligence, 4 - wisdom, 5 - charisma);
+        - The list has 6 elements that pertain to each of the stat values of the character (the indexes being: 0 - strength, 1 - dexterity, 2 - constitution, 3 - inteligence, 4 - wisdom, 5 - charisma);
+      - The Max HP and Current HP values of a character;
+      - The AC value of the character;
+      - The proficiency bonus of the character;
+      - The movement speed values for the various types of movement;
+      - Passive perception of the character;
+        - It is calculated using the `calculatePassivePerception(): int` method in the class.
+      - HashSets of the:
+        - Saving Throws the character is proficient in;
+        - Damage Vulnerabilites;
+        - Damage Immunities;
+        - Damage Resistances;
+      - A List of the weapons/attacks which are all objects from the Weapon.cs class;
+      - The Initiative of the character;
+        - By default the initiative is 0. It is assigned in the CombatTracker form either manualy or randomly
+  - The stat modifiers are calculated using the `modifierCalc(int statValue): int` method
+```c#
+public int modifierCalc(int stat)
+{
+    int modifier = ((stat / 2) - 5);
+    return modifier;
+}
+```
+  
+- Weapon.cs
+  - This is the class for the weapons/attacks that the combatants use
+  - As parameters, the class keeps:
+      - The name of the weapon
+  - A list of the damage dice that the weapon deals (as an example, damage dice can be 2d6 where the format is: 2 - num of dice to roll, d6 - 6 sided die)
+  - The damage modifier of the weapon
+  - The type of the weapon (which can only be strength or dexterity)
+  - The stat modifier of the weapon (which is the modifier of the characters strength or dexterity modifier based on the type above)
+  - Notably this class contains the methods `rollDamage(): Dictionary<string, int>` and `rollCriticalDamage(): Dictionary<string, int>` which return a map of the damage dealt per attack type (key - damage type, value - damage dealt of the type)
+```c#
+public Dictionary<string, int> rollDamage()
+{
+    Dictionary<string, int> damagePerAttackType = new Dictionary<string, int>();
+    int damage = 0;
+    foreach (string dice in this.damageDice)
+    {
+        string[] temp = dice.Split(' ');
+        string[] arr = temp[0].Split('d');
+        for (int i = 0; i < Convert.ToInt32(arr[0]); i++)
+        {
+            damage += Dice.rollDice(Convert.ToInt32(arr[1]));
+        }
+        if (damagePerAttackType.ContainsKey(temp[1]))
+            damagePerAttackType[temp[1]] += damage;
+        else damagePerAttackType.Add(temp[1], damage);
+    }
+    return damagePerAttackType;
+}
+
+public Dictionary<string, int> rollCriticalDamage()
+{
+    Dictionary<string, int> damagePerAttackType = new Dictionary<string, int>();
+    int damage = 0;
+    foreach (string dice in this.damageDice)
+    {
+        string[] temp = dice.Split(' ');
+        string[] arr = temp[0].Split('d');
+        for (int i = 0; i < 2*Convert.ToInt32(arr[0]); i++)
+        {
+            damage += Dice.rollDice(Convert.ToInt32(arr[1]));
+        }
+
+        if (damagePerAttackType.ContainsKey(temp[1]))
+            damagePerAttackType[temp[1]] += damage;
+        else damagePerAttackType.Add(temp[1], damage);
+    }
+    return damagePerAttackType;
+}
+```
 
 ## Explanation for the forms
 - CombatTracker.cs
 This is the base form for the application, from here the user can keep track of the initiative order (list on the left) and individual character (on the right). Each individual character is an object of the Combatant class. There is an option to add new characters to the combat or remove certain characters, as well as an option to make an attack or make multiple characters roll a saving throw.
 
 ![image](https://github.com/user-attachments/assets/36b46251-4dce-4252-b548-fc398c71cf0c)
-- The initiative list: is the list to the left of the form. This list displays all of the current characters that are a part of this combat. From here any character can be selected for their statistics and actions to be shown on the right of the form, additionally multiple characters can be selected for actions that would effect more than one character.
-- Roll Initiatives of Selected Combatants: Randomly assigns the initiatives of the selected characters, this process works with a function that returns a randomly generated number after adding the bonuses for each individual combatant accordingly.
+- The combatant listbox: The listbox to the left of the form. This list displays all of the current characters that are a part of this combat. From here any character can be selected for their statistics and actions to be shown on the right of the form, additionally multiple characters can be selected for actions that would effect more than one character. The combatants in the listbox` are also sorted by their initiative in a descending order.
+- Roll Initiatives of Selected Combatants: Randomly assigns the initiatives of the selected characters, which is calculated with rolling a d20 (20 sided die) + the dexterity modifier of the selected characters in the listbox.
 - Manually Input Initiative of a Combatant: opens the SetInitiative form, which allows the user to manually input the initiative of the selected character.
 - Add new Combatant button: opens the NewCombatant form, which allows the user to create a new combatant and determine their statistics. Upon completing this process the new character will appear at the bottom of the initiative list to the left.
 - Remove Combatant button: deletes the selected character from the initiative list to the left.
@@ -22,7 +128,7 @@ This is the base form for the application, from here the user can keep track of 
 - Display Combatant section: this section has all of the statistics and actions for the individual selected character, which can be operated from if the selected character is taking his turn in combat.
 - Name: This displays the name of the character.
 - Proficiency Bonus: This displays the character's proficiency bonus, which is an already added bonus to some of the actions the character can take.
-- Passive Perception: This displays the character's passive perception, which can determine if the character can see another character that is using stealth (according to their stealth roll). The passive perception is calculated automatically as 10 + perception modifier.
+- Passive Perception: This displays the character's passive perception, which can determine if the character can see another character that is using stealth (according to their stealth roll). The passive perception is calculated automatically as 10 + perception modifier (a.k.a the wisdom modifier)
 - Total HP: This displays the maximum amount of hit points a character can have. A character cannot be healed above his maximum hp however there are actions which allow character to gain temporary hp. Whenever a character with temporary hp takes damage the amount is first subtracted from his temporary hp.
 - AC: This displays the Armor Class of the character. Whenever somebody chose this character as a target of an attack, the attack roll must be greater than the target's hp.
 - Current HP: This displays the current hit points of the character both as a number and in the health bar bellow the number. Whenever a non-player character reaches 0 hp they die instantly.
@@ -30,9 +136,11 @@ This is the base form for the application, from here the user can keep track of 
 - Saving Throws: This sections displays the bonuses for each possible saving throw the character can make.
 - Speeds: This sections displays the possible distance the character can travel during his turn in combat.
 - Resistances, Immunities and Vulnerabilities: This sections display the types of damage the character will react differently to. If the character takes damage from the type of damage he is resistent to, the damage will be halved. The character cannot take any damage from a type he is immune to. If the character takes damage from the type of damage he is vulnerable to, the damage will be doubled.
-- Weapons/Attacks list: is a list that has all of the possible attacks the character can make during their action. The attacks are saved as the name of the weapon the character is using to attack (examples: longsword, longbow, claw, bite).
+- Weapons/Attacks list: is a listbox that has all of the possible attacks the character can make during their action. The attacks are saved as the name of the weapon the character is using to attack (examples: longsword, longbow, claw, bite).
 - Add new Weapon/Attack: opens the AddWeapon form which allows the user to input a new attack with bonuses and amount of damage it would deal when it hits.
 - Remove weapon/attack: removes selected weapon from the list.
+- New: Starts a new combat
+- Open/Save: Opens/Saves the data in the form. It is saved in a `.xml` format.
 #
 - NewCombatant.cs
 Whenever a new character is being created, this form will open which will allow the user to input all of the necessary statistics for the character.
@@ -41,7 +149,7 @@ Whenever a new character is being created, this form will open which will allow 
 - Stats: in this sector the user can input the statistics of the character, from which the modifiers for their bonuses will be determined.
 - HP and AC: in this sector the user can input the maximum hp and the AC of the character.
 - Proficiencies: in this sector the user can input the proficiency bonus of the character, as well as select which saving throw the character is proficient in.
-- Resistances, Immunities and Vulnerabilities: in this sector the user can input the resistances, immunities and vulnerabilities of the character.
+- Resistances, Immunities and Vulnerabilities: in this sector the user can select the resistances, immunities and vulnerabilities of the character.
 - Speeds: in this sector the user can input the movement speeds of the character.
 #
 - SetHP.cs and SetInitiative.cs
