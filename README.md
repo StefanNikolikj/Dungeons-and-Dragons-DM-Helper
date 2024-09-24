@@ -183,3 +183,5 @@ This form will open when a creature is making an attack, from here the user has 
 - Enter the Dice to be rolled: in this field the user can input the damage of the effect the characters are rolling to save against. The damage is inputted in the format [number of dice]d[sides of dice] for example 8d6.
 - Does the attack deal half damage when saved: some effects may deal half damage even when saved. If this is not checked then the characters that succeeded on the roll will not take any damage.
 #
+
+There is a test file uploaded that has characters with weapons already added to the combat for the purpose of testing out the app without needing to add new characters.
