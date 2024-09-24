@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<ArrayOfCombatant xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Combatant>
+    <name>Argro</name>
+    <stats>
+      <int>23</int>
+      <int>18</int>
+      <int>16</int>
+      <int>10</int>
+      <int>12</int>
+      <int>10</int>
+    </stats>
+    <maxHP>350</maxHP>
+    <currentHP>350</currentHP>
+    <tempHP>0</tempHP>
+    <AC>18</AC>
+    <proficiency>5</proficiency>
+    <movementSpeed>60</movementSpeed>
+    <burrowSpeed>0</burrowSpeed>
+    <swimSpeed>0</swimSpeed>
+    <flyingSpeed>120</flyingSpeed>
+    <climbingSpeed>0</climbingSpeed>
+    <passivePerception>11</passivePerception>
+    <passiveInsight>0</passiveInsight>
+    <savingThrows>
+      <string>Strength</string>
+      <string>Constitution</string>
+    </savingThrows>
+    <damageResistances>
+      <string>Piercing</string>
+      <string>Bludgeoning</string>
+      <string>Slashing</string>
+    </damageResistances>
+    <damageImmunities>
+      <string>Fire</string>
+    </damageImmunities>
+    <damageVulnerabilities />
+    <conditionImmunities />
+    <weapons>
+      <Weapon>
+        <name>Dragonlance</name>
+        <damageDice>
+          <string>1d10 Piercing</string>
+          <string>2d6 Fire</string>
+        </damageDice>
+        <damageModifier>3</damageModifier>
+        <weaponType>Strength</weaponType>
+        <statModifier>6</statModifier>
+      </Weapon>
+    </weapons>
+    <initiative>22</initiative>
+  </Combatant>
+  <Combatant>
+    <name>Max</name>
+    <stats>
+      <int>20</int>
+      <int>10</int>
+      <int>15</int>
+      <int>13</int>
+      <int>13</int>
+      <int>18</int>
+    </stats>
+    <maxHP>300</maxHP>
+    <currentHP>300</currentHP>
+    <tempHP>0</tempHP>
+    <AC>25</AC>
+    <proficiency>5</proficiency>
+    <movementSpeed>30</movementSpeed>
+    <burrowSpeed>0</burrowSpeed>
+    <swimSpeed>0</swimSpeed>
+    <flyingSpeed>60</flyingSpeed>
+    <climbingSpeed>0</climbingSpeed>
+    <passivePerception>11</passivePerception>
+    <passiveInsight>0</passiveInsight>
+    <savingThrows>
+      <string>Wisdom</string>
+      <string>Charisma</string>
+    </savingThrows>
+    <damageResistances>
+      <string>Cold</string>
+    </damageResistances>
+    <damageImmunities />
+    <damageVulnerabilities />
+    <conditionImmunities />
+    <weapons>
+      <Weapon>
+        <name>Frostslayer</name>
+        <damageDice>
+          <string>1d8 Slashing</string>
+          <string>3d6 Fire</string>
+          <string>1d6 Radiant</string>
+        </damageDice>
+        <damageModifier>2</damageModifier>
+        <weaponType>Strength</weaponType>
+        <statModifier>5</statModifier>
+      </Weapon>
+    </weapons>
+    <initiative>13</initiative>
+  </Combatant>
+  <Combatant>
+    <name>Eberk</name>
+    <stats>
+      <int>18</int>
+      <int>16</int>
+      <int>20</int>
+      <int>10</int>
+      <int>10</int>
+      <int>13</int>
+    </stats>
+    <maxHP>400</maxHP>
+    <currentHP>400</currentHP>
+    <tempHP>0</tempHP>
+    <AC>16</AC>
+    <proficiency>6</proficiency>
+    <movementSpeed>30</movementSpeed>
+    <burrowSpeed>0</burrowSpeed>
+    <swimSpeed>0</swimSpeed>
+    <flyingSpeed>0</flyingSpeed>
+    <climbingSpeed>0</climbingSpeed>
+    <passivePerception>10</passivePerception>
+    <passiveInsight>0</passiveInsight>
+    <savingThrows>
+      <string>Strength</string>
+      <string>Constitution</string>
+    </savingThrows>
+    <damageResistances>
+      <string>Piercing</string>
+      <string>Bludgeoning</string>
+      <string>Slashing</string>
+      <string>Cold</string>
+      <string>Fire</string>
+      <string>Lightning</string>
+      <string>Thunder</string>
+      <string>Poison</string>
+      <string>Acid</string>
+      <string>Necrotic</string>
+      <string>Radiant</string>
+      <string>Force</string>
+    </damageResistances>
+    <damageImmunities />
+    <damageVulnerabilities />
+    <conditionImmunities />
+    <weapons />
+    <initiative>5</initiative>
+  </Combatant>
+</ArrayOfCombatant>
