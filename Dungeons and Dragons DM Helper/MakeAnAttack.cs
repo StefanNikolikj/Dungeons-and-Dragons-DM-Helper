@@ -130,6 +130,7 @@ namespace Dungeons_and_Dragons_DM_Helper
                     totalDamage += damagePerAttacktype[key] * 2;
                 else totalDamage += damagePerAttacktype[key];
             }
+            // TODO: Have the app take into account the stat and weapon modifyers
             return totalDamage;
         }
     }
