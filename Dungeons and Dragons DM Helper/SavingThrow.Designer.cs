@@ -206,6 +206,7 @@
             this.cbHalfDamage.TabIndex = 32;
             this.cbHalfDamage.Text = "Does this attack deal half damage when saved?";
             this.cbHalfDamage.UseVisualStyleBackColor = true;
+            this.cbHalfDamage.CheckedChanged += new System.EventHandler(this.cbHalfDamage_CheckedChanged);
             // 
             // btnReturn
             // 

@@ -136,5 +136,10 @@ namespace Dungeons_and_Dragons_DM_Helper
             }
 
         }
+
+        private void cbHalfDamage_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

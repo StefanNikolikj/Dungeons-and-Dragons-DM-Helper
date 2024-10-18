@@ -96,7 +96,7 @@ namespace Dungeons_and_Dragons_DM_Helper
         }
         private int getModifiers()
         {
-            return attackingCombatant.proficiency + attackingCombatant.modifierCalc(attackingCombatant.stats[attackingCombatant.getStat(selectedWeapon.weaponType)]) + selectedWeapon.damageModifier;
+            return attackingCombatant.proficiency + selectedWeapon.statModifier + selectedWeapon.damageModifier;
         }
 
         private void btnFinish_Click(object sender, EventArgs e)
@@ -131,7 +131,7 @@ namespace Dungeons_and_Dragons_DM_Helper
                 else totalDamage += damagePerAttacktype[key];
             }
             // TODO: Have the app take into account the stat and weapon modifyers
-            return totalDamage;
+            return totalDamage + selectedWeapon.statModifier + selectedWeapon.damageModifier;
         }
     }
 }
