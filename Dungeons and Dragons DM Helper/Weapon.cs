@@ -36,15 +36,23 @@ namespace Dungeons_and_Dragons_DM_Helper
         public Dictionary<string, int> rollDamage()
         {
             Dictionary<string, int> damagePerAttackType = new Dictionary<string, int>();
-            int damage = 0;
+            bool isFirst = true;
             foreach (string dice in this.damageDice)
             {
+                int damage = 0;
                 string[] temp = dice.Split(' ');
                 string[] arr = temp[0].Split('d');
                 for (int i = 0; i < Convert.ToInt32(arr[0]); i++)
                 {
                     damage += Dice.rollDice(Convert.ToInt32(arr[1]));
                 }
+
+                if (isFirst)
+                {
+                    damage += (this.damageModifier + this.statModifier);
+                    isFirst = false;
+                }
+
                 if (damagePerAttackType.ContainsKey(temp[1]))
                     damagePerAttackType[temp[1]] += damage;
                 else damagePerAttackType.Add(temp[1], damage);
@@ -54,14 +62,21 @@ namespace Dungeons_and_Dragons_DM_Helper
         public Dictionary<string, int> rollCriticalDamage()
         {
             Dictionary<string, int> damagePerAttackType = new Dictionary<string, int>();
-            int damage = 0;
+            bool isFirst = true;
             foreach (string dice in this.damageDice)
             {
+                int damage = 0;
                 string[] temp = dice.Split(' ');
                 string[] arr = temp[0].Split('d');
                 for (int i = 0; i < 2*Convert.ToInt32(arr[0]); i++)
                 {
                     damage += Dice.rollDice(Convert.ToInt32(arr[1]));
+                }
+
+                if (isFirst)
+                {
+                    damage += (this.damageModifier + this.statModifier);
+                    isFirst = false;
                 }
 
                 if (damagePerAttackType.ContainsKey(temp[1]))
